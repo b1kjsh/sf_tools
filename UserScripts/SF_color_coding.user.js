@@ -212,6 +212,10 @@ function color() {
         $('.bottomNav').addClass('jh-background');
         $('#ext-gen10').addClass('jh-background');
         $('.zen-active').toggleClass('jh-active');
+        $('.rolodex').insertAfter('div.filterLinks').toggleClass('.jh-margin-2');
+        $('#phSearchForm').insertAfter('#tabBar').show().toggleClass('.jh-search');
+        // $('#phSearchInput').attr({autocomplete: 'true'});
+        $('#searchButtonContainer').toggleClass('.jh-hidden');
         setTimeout(function() {
             if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
                 if ($('.x-grid3-row-table').length){

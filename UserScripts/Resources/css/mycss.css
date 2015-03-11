@@ -77,7 +77,7 @@
 	/*parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');*/
 }
 
-.jh-prt-urgent, .jh-prt-urgent div, .jh-prt-urgent a {
+.jh-prt-urgent, .jh-prt-urgent div, .jh-prt-urgent a, .jh-prt-urgent span {
     background-color: #ff0000;
     border-color: #ff0000;
     font: 'italic bold 12px/18px Arial, Helvetica, sans-serif';
@@ -89,5 +89,12 @@
 
 .jh-hidden {
 	display: none;
+}
+
+.jh-search {
+	right: 0;
+	top: 0.5em;
+	z-index: 10;
+	position: absolute;
 }
 
