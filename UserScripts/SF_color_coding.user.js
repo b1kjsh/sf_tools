@@ -215,7 +215,8 @@ function color() {
         $('.rolodex').insertAfter('div.filterLinks').toggleClass('.jh-margin-2');
         $('#phSearchForm').insertAfter('#tabBar').show().toggleClass('.jh-search');
         // $('#phSearchInput').attr({autocomplete: 'true'});
-        $('#searchButtonContainer').toggleClass('.jh-hidden');
+        $('#searchButtonContainer').toggleClass('jh-hidden');
+        $('*','#phSearchContainer').css('background', '0 !important');
         setTimeout(function() {
             if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
                 if ($('.x-grid3-row-table').length){

@@ -11,6 +11,13 @@ nav {
     font-size: 10px !important;    
 }
 
+.jh-search {
+    right: 0 !important;
+    top: 0.5em !important;
+    z-index: 10 !important;
+    position: absolute !important;
+}
+
 #tabBar img {
     display: none   !important;
 }
