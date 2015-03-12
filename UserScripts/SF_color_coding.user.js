@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.01
+// @version    1.02
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
 // @include     https://na19.salesforce.com/500?*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
+// @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
 // @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css
 // @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout.css
 // @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_color_coding.user.js
@@ -20,6 +21,9 @@ console.log("---"+GM_info.script.name+" loaded in window version "+GM_info.scrip
 
 $(document).ready(function () {
     // $('.x-grid3-col-ACTION_COLUMN').
+    $(document).bind('keydown', 'ctrl+shift+s', function(){
+       $('#phSearchInput').focus();
+    });
     var mArray = [];
     var jh_CSS = GM_getResourceText("jh_CSS");
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
