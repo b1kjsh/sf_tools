@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.02
+// @version    1.03
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -23,6 +23,9 @@ $(document).ready(function () {
     // $('.x-grid3-col-ACTION_COLUMN').
     $(document).bind('keydown', 'ctrl+shift+s', function(){
        $('#phSearchInput').focus();
+    });
+    $(document).bind('keydown', 'ctrl+q', function(){
+       $('#ext-gen21').trigger("click");
     });
     var mArray = [];
     var jh_CSS = GM_getResourceText("jh_CSS");
@@ -216,7 +219,7 @@ function color() {
         $('.bottomNav').addClass('jh-background');
         $('#ext-gen10').addClass('jh-background');
         $('.zen-active').toggleClass('jh-active');
-        $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-margin-2');
+        $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-margin-ng6');
         $('#tabBar').append('<li id="mysearch"></li>');
         $('#phSearchForm').appendTo('#mysearch');
         $('#phSearchForm').addClass('jh-search');
