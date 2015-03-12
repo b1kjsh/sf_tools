@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.03
+// @version    1.04
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -246,6 +246,7 @@ function color() {
     //         }, 1000);        
     //     }
     // });
+
 $(window).resize(function() {
     setTimeout(function() {
         if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
@@ -268,14 +269,14 @@ function openReplacement(method, url, async, user, password) {
     console.warn('Preparing ' + syncMode + ' HTTP request : ' + method + ' ' + url);
     if ($('.jh-refresh').length < 1) {
         $('.refreshListButton').toggleClass('jh-hidden');
-        $('.refreshListButton').clone().attr('id',id += 1).addClass('jh-refresh').toggleClass('jh-hidden').insertAfter('div.filterLinks');
+        $('.refreshListButton').clone().attr('id',id += 1).addClass('jh-refresh').insertAfter('div.filterLinks');
     };
         
 
     if (/ListServlet/.test(url)){
         if (debug) {console.log('openReplacement()','Case Refresh Detected! Attempting to color found objects!');}
         setTimeout(function () {
-        $('#00B13000009tzTL_refresh').remove();
+        $('#00B13000009tzTL_refresh').hide();
          color();
          colorAged();
          getCases();
@@ -298,7 +299,7 @@ function sendReplacement(data) {
 function onReadyStateChangeReplacement() {
     console.warn('HTTP request ready state changed : ' + this.readyState);
     if (this._onreadystatechange) {
-        return this._onreadystatechange.apply(this, arguments);
+        return this._onreadystatechange.apply(this, arguments);        
     }
 }
 
