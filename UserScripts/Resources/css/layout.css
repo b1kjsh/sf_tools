@@ -16,8 +16,8 @@ nav {
 }
 
 .jh-search {
-    right: 0 !important;
-    top: 0.5em !important;
+    right: 1em !important;
+    top: 3.2em !important;
     z-index: 10 !important;
     position: absolute !important;
 }
@@ -85,9 +85,9 @@ select.title {
     box-shadow: none    !important;
 }
 
-.zen .zen-tabMenu {
+/*.zen .zen-tabMenu {
     padding: 10px 0px 0px    !important;
-}
+}*/
 
 .brandPrimaryBrd {
     border-color: #e2e6e7   !important;

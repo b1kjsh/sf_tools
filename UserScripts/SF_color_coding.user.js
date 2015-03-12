@@ -17,7 +17,9 @@ var debug = false;
 console.log("---"+GM_info.script.name+" loaded in window version "+GM_info.script.version+"---");
 
 // TODO: add logo somewhere https://c.na19.content.force.com/servlet/servlet.FileDownload?file=01513000002lPva
+
 // TODO: move the search bar
+    // Done!
 
 $(document).ready(function () {
     // $('.x-grid3-col-ACTION_COLUMN').
@@ -212,14 +214,14 @@ function color() {
 
         }
 
-        $('.linkBar').toggleClass('jh-border');
+        $('.linkBar').toggleClass('jh-hidden');
         $('.chatterFollowUnfollowAction').addClass('jh-hidden');
         $('.x-grid3-hd-row').addClass('jh-background');
         $('.linkBar').addClass('jh-background');
         $('.bottomNav').addClass('jh-background');
         $('#ext-gen10').addClass('jh-background');
         $('.zen-active').toggleClass('jh-active');
-        $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-margin-ng6');
+        $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-hidden');
         $('#tabBar').append('<li id="mysearch"></li>');
         $('#phSearchForm').appendTo('#mysearch');
         $('#phSearchForm').addClass('jh-search');
