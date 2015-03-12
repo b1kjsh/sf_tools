@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.00
+// @version    1.01
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -212,11 +212,13 @@ function color() {
         $('.bottomNav').addClass('jh-background');
         $('#ext-gen10').addClass('jh-background');
         $('.zen-active').toggleClass('jh-active');
-        $('.rolodex').insertAfter('div.filterLinks').toggleClass('.jh-margin-2');
-        $('#phSearchForm').insertAfter('#tabBar').show().toggleClass('.jh-search');
+        $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-margin-2');
+        $('#tabBar').append('<li id="mysearch"></li>');
+        $('#phSearchForm').appendTo('#mysearch');
+        $('#phSearchForm').addClass('jh-search');
         // $('#phSearchInput').attr({autocomplete: 'true'});
-        $('#searchButtonContainer').toggleClass('jh-hidden');
-        $('*','#phSearchContainer').css('background', '0 !important');
+        // $('#searchButtonContainer').toggleClass('jh-hidden');
+        // $('*','#phSearchContainer').css('background', '0 !important');
         setTimeout(function() {
             if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
                 if ($('.x-grid3-row-table').length){

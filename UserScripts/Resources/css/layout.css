@@ -2,13 +2,17 @@
     margin: 2px;
 }
 
+.jh-margin-ng6 {
+    margin-top: -6px    !important;
+}
+
 nav {
     background-color: #2e5e86   !important;
 }
 
 #tabBar a {
     color: #F5F5F5;
-    font-size: 10px !important;    
+    font-size: 11px !important;    
 }
 
 .jh-search {
@@ -79,6 +83,10 @@ select.title {
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px    !important;
     box-shadow: none    !important;
+}
+
+.zen .zen-tabMenu {
+    padding: 10px 0px 0px    !important;
 }
 
 .brandPrimaryBrd {
