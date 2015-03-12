@@ -85,9 +85,9 @@ select.title {
     box-shadow: none    !important;
 }
 
-/*.zen .zen-tabMenu {
-    padding: 10px 0px 0px    !important;
-}*/
+.zen .zen-tabMenu {
+    padding: 1px 0px 0px    !important;
+}
 
 .brandPrimaryBrd {
     border-color: #e2e6e7   !important;
