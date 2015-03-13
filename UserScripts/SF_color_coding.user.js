@@ -270,7 +270,13 @@ function openReplacement(method, url, async, user, password) {
         $('.refreshListButton').toggleClass('jh-hidden');
         $('.refreshListButton').clone().attr('id',id += 1).addClass('jh-refresh').insertAfter('div.filterLinks');
     };
-        
+        // setTimeout(function () {
+        if (debug) {console.log('openReplacement()','Attempting to color objects!');}
+        $('#00B13000009tzTL_refresh').hide();
+         color();
+         colorAged();
+         getCases();
+     // }, 500);
 
     if (/ListServlet/.test(url)){
         if (debug) {console.log('openReplacement()','Case Refresh Detected! Attempting to color found objects!');}
