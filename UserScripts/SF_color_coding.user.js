@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.04
+// @version    1.05
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -141,6 +141,9 @@ function checkPRT() {
                     var diffDate = cdate - mdate;
                     var hourDiff = Math.floor(diffDate / 1000 / 60 / 60);
                     if (debug) {console.log(diffDate, hourDiff);}
+                    if ($(this).parent("td").parent("tr").parent("tbody").find("div:contains('Waiting on Case Owner')").length){
+                        hourDiff = Math.floor(hourDiff + 72);
+                    }
                     if ( hourDiff <= 24 && hourDiff > 12 ){
                         if (debug) {console.log(diffDate, hourDiff);}
 
