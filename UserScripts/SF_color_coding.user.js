@@ -9,6 +9,7 @@
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
 // @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
 // @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
+// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js
 // @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css
 // @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout.css
 // @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_color_coding.user.js
@@ -161,7 +162,7 @@ function checkPRT() {
                         parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
                             // parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');
                             // $(this).parent("td").parent("tr").parent("tbody").css('background', '#FF9933');
-                            $(this).parent("td").parent("tr").parent("tbody").toggleClass('jh-prt-med');
+                            $(this).parent("td").parent("tr").parent("tbody").toggleClass('jh-prt-high');
                         });
 
                     }
@@ -174,7 +175,11 @@ function checkPRT() {
                         parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
                             // parent.find('div').css('font', 'italic bold 12px/18px Arial, Helvetica, sans-serif');
                             // $(this).parent("td").parent("tr").parent("tbody").css('background', '#FF3300');
-                            $(this).parent("td").parent("tr").parent("tbody").toggleClass('jh-prt-urgent');
+                            if ($(this).parent("td").parent("tr").parent("tbody").find("div:contains('Waiting on Case Owner')").length){
+                                $(this).parent("td").parent("tr").parent("tbody").toggleClass('jh-prt-low');
+                            } else {
+                                $(this).parent("td").parent("tr").parent("tbody").toggleClass('jh-prt-urgent');
+                            }
                         });
                     }
                 });
@@ -213,10 +218,10 @@ function color() {
 
         }
 
-        $('.linkBar').toggleClass('jh-hidden');
+        $('.linkBar').addClass('jh-hidden');
         $('.chatterFollowUnfollowAction').addClass('jh-hidden');
         $('.x-grid3-hd-row').addClass('jh-background');
-        $('.linkBar').addClass('jh-background');
+        // $('.linkBar').addClass('jh-background');
         $('.bottomNav').addClass('jh-background');
         $('#ext-gen10').addClass('jh-background');
         $('.zen-active').toggleClass('jh-active');
