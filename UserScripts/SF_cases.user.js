@@ -19,7 +19,10 @@
 
 $(document).ready(function() {
 	$('body').append('<div id="myEditBox" />');
-
+	var jh_CSS = GM_getResourceText("jh_CSS");
+    var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
+    GM_addStyle (jh_CSS);
+    GM_addStyle (jh_CSS_layout);    
 	function getEditPage(value) {
 		var geturl = $('input[name="edit"]').attr('onclick');
 		var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?retURL=%[0-9a-zA-Z\/]{2,})(','([A-Z]*)','([A-Za-z]*)'\);)/,"$2")
