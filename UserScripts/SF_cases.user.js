@@ -77,7 +77,12 @@ $(document).ready(function() {
 		threshold: 0.4,
 		multiSearch: true
 	};
+	$('div.jh-unilinkw').focusin(function(){$(this).addClass('jh-hover')});
+	// $('div.jh-unilinkw').focusin(function() {alert("message")});
+	// $('.jh-unibar').focusout(function({
 
+	// 	$('div.jh-unilinkw').focus()
+	// });
 	var listObj = new List('jh-uniwrapper', options);
 
 	$('.jh-unibar').focusout(function() {
