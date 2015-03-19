@@ -8,9 +8,8 @@
 
 #jh-uniwrapper {
     position: fixed;
-    top: 20em;
-    float: right;
-    left: -50%;
+    top: 20%;
+    left: 50%;
 }
 
 nav {
