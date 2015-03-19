@@ -8,8 +8,21 @@
 
 #jh-uniwrapper {
     position: fixed;
-    top: 20%;
+    top: 25%;
     left: 50%;
+    background: grey;
+}
+
+.jh-unilist li, ul {
+    font-family: monospace;
+    font-size: x-large;
+    -webkit-padding-start: 0px;
+    list-style-type: none;
+    border-top:3px solid wheat;
+}
+.jh-unibar input {
+    font-size: xx-large;
+    font-family: monospace;
 }
 
 nav {

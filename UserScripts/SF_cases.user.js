@@ -37,12 +37,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar"></input><ul class="list"></ul></div>');
+	$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
 	var items = ["Waiting on Case Owner","Escalated to Engineering"];
 
 	$.each(items, function(i, item) {
 		var t = i+1
-	      $('#jh-uniwrapper').find('.list').append('<li><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a></li>');
+	      $('#jh-uniwrapper').find('.list').append('<li><div class="jh-unilinkw"><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a></div></li>');
 	      // $('#topButtonRow').append('<input value=" '+item.valueOf()+' " title="'+item.valueOf()+'" class="btn" type="button">');
 	});  // close each()
 	
