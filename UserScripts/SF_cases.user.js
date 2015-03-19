@@ -1,94 +1,45 @@
-// ==UserScript==
-// @name       SF_cases
-// @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.05
-// @grant       GM_getResourceText
-// @grant       GM_addStyle
-// @description  Days Since Updated and the Case Status column is required for this script.
-// @include     https://na19.salesforce.com/500*
-// @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
-// @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
-// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
-// @require     http://listjs.com/no-cdn/list.js
-// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js
-// @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css
-// @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout.css
-// @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_cases.user.js
-// @copyright  2014+, Josh Howard
-// ==/UserScript==
+#jh-uniwrapper {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    
+    box-shadow: 3px 5px 15px #888888;
+    border:1px solid #d1d1d1;
+    border-radius: 3px;
+    background:#F1F1F1;
+}
 
-$(document).ready(function() {
-	$('body').append('<div id="myEditBox" />');
-	var jh_CSS = GM_getResourceText("jh_CSS");
-    var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
-    GM_addStyle (jh_CSS);
-    GM_addStyle (jh_CSS_layout);    
-	function getEditPage(value) {
-		var geturl = $('input[name="edit"]').attr('onclick');
-		var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?retURL=%[0-9a-zA-Z\/]{2,})(','([A-Z]*)','([A-Za-z]*)'\);)/,"$2")
-		console.log(url);
-		$('#myEditBox').load(url , function() {
-			console.log("loaded Edit Page");
-			if ($('#00N30000004r0fn').length){
-				console.log("found escalation status");
-				$('#00N30000004r0fn').val(value);
-			}
-			if ($('#cas7').length){
-				console.log("found case status");
-			}
-			$(this).find("form").find(".btn[name='save']").click();
-		});
-	}
+.jh-unilist li{
+    font-family: monospace;
+    font-size: x-large;
+    list-style-type: none;    
+    margin-left: 0px;
+    border-top: 1px solid #d1d1d1;
+    
+}
 
-	$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
-	var items = ["Waiting on Case Owner","Escalated to Engineering"];
+.jh-unilinkw {
+    margin-left: 0.5em;    
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+.jh-pdesc {
+    font-size: 12px;
+    position: relative;
+    
+}
 
-	$.each(items, function(i, item) {
-		var t = i+1
-	      $('#jh-uniwrapper').find('.list').append('<li><div class="jh-unilinkw"><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
-	      // $('#topButtonRow').append('<input value=" '+item.valueOf()+' " title="'+item.valueOf()+'" class="btn" type="button">');
-	});  // close each()
-	
-	// $("a[name='escalated_to_engineering']").click(function(){
-	// 	escalated();
-	// });
-
-	// $("a[name='waiting_on_case_owner']").click(function(){
-	$("a.jh-unilink").click(function(){
-		// $('div#00N30000004r0fn_ileinner').dblclick();
-		getEditPage($(this).text());
-		// sfdcPage.save();
-	});
-
-	$('.name').keypress(function (e) {
-	  	console.log("here");
-	  	// escalated();
-	  if (e.which == 13) {
-
-	    $('.name').click();
-	}});
-
-	var options = {
-	  valueNames: [ 'name' ],
-	  plugins: [ListFuzzySearch()],
-	  searchClass: 'jh-unibar',
-		location: 0,
-		distance: 100,
-		threshold: 0.4,
-		multiSearch: true
-	};
-
-	var listObj = new List('jh-uniwrapper', options);
-
-	$('.jh-unibar').focusout(function() {
-		$('.list').find('li').find('a').focus();
-	});
-
-
-	// // Search manually 
-	// listObj.fuzzySearch.search('my search');
-
-	// // Search manually on specific columns
-	// listObj.fuzzySearch.search('my search', { name: true });
-
-});
+.jh-unilist { 
+    background: #FFFFFF;
+    -webkit-padding-start: 0px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+}
+.jh-unibar {
+    margin: 12px;
+    font-size: xx-large;
+    font-family: monospace;
+    border-radius: 3px;
+    
+}
