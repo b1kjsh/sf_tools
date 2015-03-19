@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 	$.each(items, function(i, item) {
 		var t = i+1
-	      $('#jh-uniwrapper').find('.list').append('<li><div class="jh-unilinkw"><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a></div></li>');
+	      $('#jh-uniwrapper').find('.list').append('<li><div class="jh-unilinkw"><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
 	      // $('#topButtonRow').append('<input value=" '+item.valueOf()+' " title="'+item.valueOf()+'" class="btn" type="button">');
 	});  // close each()
 	
