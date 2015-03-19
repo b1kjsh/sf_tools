@@ -6,6 +6,13 @@
     margin-top: -6px    !important;
 }
 
+#jh-uniwrapper {
+    position: fixed;
+    top: 20em;
+    float: right;
+    left: -50%;
+}
+
 nav {
     background-color: #2e5e86   !important;
 }
