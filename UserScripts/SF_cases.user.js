@@ -77,7 +77,8 @@ $(document).ready(function() {
 		threshold: 0.4,
 		multiSearch: true
 	};
-	$('div.jh-unilinkw').focusin(function(){$(this).addClass('jh-hover')});
+	$('div.jh-unilinkw').focusin(function(){$(this).toggleClass('jh-hover')});
+	$('div.jh-unilinkw').focusout(function(){$(this).toggleClass('jh-hover')});
 	// $('div.jh-unilinkw').focusin(function() {alert("message")});
 	// $('.jh-unibar').focusout(function({
 
