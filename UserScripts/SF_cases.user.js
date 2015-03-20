@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.05
+// @version    0.10
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -22,7 +22,8 @@ $(document).ready(function() {
 	var jh_CSS = GM_getResourceText("jh_CSS");
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
     GM_addStyle (jh_CSS);
-    GM_addStyle (jh_CSS_layout);    
+    GM_addStyle (jh_CSS_layout);
+
 	function getEditPage(value) {
 		var geturl = $('input[name="edit"]').attr('onclick');
 		var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?retURL=%[0-9a-zA-Z\/]{2,})(','([A-Z]*)','([A-Za-z]*)'\);)/,"$2")
@@ -46,23 +47,14 @@ $(document).ready(function() {
 	$.each(items, function(i, item) {
 		var t = i+1
 	      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
-	      // $('#topButtonRow').append('<input value=" '+item.valueOf()+' " title="'+item.valueOf()+'" class="btn" type="button">');
-	});  // close each()
+	});  
 	
-	// $("a[name='escalated_to_engineering']").click(function(){
-	// 	escalated();
-	// });
-
-	// $("a[name='waiting_on_case_owner']").click(function(){
 	$("a.jh-unilink").click(function(){
-		// $('div#00N30000004r0fn_ileinner').dblclick();
 		getEditPage($(this).text());
-		// sfdcPage.save();
 	});
 
 	$('.name').keypress(function (e) {
 	  	console.log("here");
-	  	// escalated();
 	  if (e.which == 13) {
 
 	    $('.name').click();
@@ -79,16 +71,8 @@ $(document).ready(function() {
 	};
 	$('div.jh-unilinkw').focusin(function(){$(this).toggleClass('jh-hover')});
 	$('div.jh-unilinkw').focusout(function(){$(this).toggleClass('jh-hover')});
-	// $('div.jh-unilinkw').focusin(function() {alert("message")});
-	// $('.jh-unibar').focusout(function({
-
-	// 	$('div.jh-unilinkw').focus()
-	// });
 	var listObj = new List('jh-uniwrapper', options);
 
-	// $('.jh-unibar').focusout(function() {
-	// 	$(this).parent('#jh-uniwrapper').find('.jh-unilist').firstChild().focus();
-	// });
 	$('#jh-unibar').on('keydown', function(e) {
 		    console.log(e.keyCode.toString() + " " + e.which.toString());
 	    if ((e.keyCode || e.which) == 9) {
@@ -113,14 +97,7 @@ $(document).ready(function() {
        		$('#jh-uniwrapper').hide();
     	} else {
     		$('#jh-uniwrapper').show();
+    		$('#jh-unibar').focus();
     	}
     });
-
-
-	// // Search manually 
-	// listObj.fuzzySearch.search('my search');
-
-	// // Search manually on specific columns
-	// listObj.fuzzySearch.search('my search', { name: true });
-
 });
