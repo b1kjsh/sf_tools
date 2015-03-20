@@ -7,6 +7,7 @@
     border:1px solid #d1d1d1;
     border-radius: 3px;
     background:#F1F1F1;
+    z-index: 10;
 }
 
 .jh-unilist li{

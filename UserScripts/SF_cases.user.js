@@ -40,12 +40,12 @@ $(document).ready(function() {
 		});
 	}
 
-	$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
+	$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar" id="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
 	var items = ["Waiting on Case Owner","Escalated to Engineering"];
 
 	$.each(items, function(i, item) {
 		var t = i+1
-	      $('#jh-uniwrapper').find('.list').append('<li><div class="jh-unilinkw"><a tabindex="'+t+'" class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
+	      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
 	      // $('#topButtonRow').append('<input value=" '+item.valueOf()+' " title="'+item.valueOf()+'" class="btn" type="button">');
 	});  // close each()
 	
@@ -86,9 +86,35 @@ $(document).ready(function() {
 	// });
 	var listObj = new List('jh-uniwrapper', options);
 
-	$('.jh-unibar').focusout(function() {
-		$('.list').find('li').find('a').focus();
+	// $('.jh-unibar').focusout(function() {
+	// 	$(this).parent('#jh-uniwrapper').find('.jh-unilist').firstChild().focus();
+	// });
+	$('#jh-unibar').on('keydown', function(e) {
+		    console.log(e.keyCode.toString() + " " + e.which.toString());
+	    if ((e.keyCode || e.which) == 9) {
+	        $('.jh-unilinkw').parent('li').first().focus();    
+	        $('.jh-unilinkw').parent('li').last().on('keydown', function(e) {
+		    if ((e.keyCode || e.which) == 9) {
+		    	$('#jh-unibar').focus();
+		        e.preventDefault(); 
+		    }}); 
+	        e.preventDefault(); 
+    }});
+    $('.jh-unilinkw').on('keydown',function(e) {
+    	if (e.keyCode == 27){
+    		alert("message");
+    		$('#jh-unibar').focus();
+    	}
 	});
+    
+    $(document).bind('keydown', 'shift+u', function(){
+    	console.log("detected shift+u");
+    	if ($('#jh-uniwrapper').is(":visible")){
+       		$('#jh-uniwrapper').hide();
+    	} else {
+    		$('#jh-uniwrapper').show();
+    	}
+    });
 
 
 	// // Search manually 

@@ -17,4 +17,6 @@ $(document).ready(function() {
     $(document).bind('keydown', 'ctrl+q', function(){
        $('#ext-gen21').trigger("click");
     });
+    
+
 });
