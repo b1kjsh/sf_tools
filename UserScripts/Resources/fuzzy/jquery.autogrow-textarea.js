@@ -61,8 +61,9 @@
                 }
 
                 console.log(newHeight);
-                if (options.maxHeight < newHeight)
-                    newHeight = options;
+                if (options.maxHeight < newHeight){
+                    newHeight = options.maxHeight;
+                }
                 $self.height(newHeight);
                 
                 if(settings.postGrowCallback!=null){
