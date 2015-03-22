@@ -36,8 +36,6 @@
             {
                 var times = function(string, number)
                 {
-                    if (number > 50)
-                        number = 50
                     for (var i=0, r=''; i<number; i++) r += string;
                     return r;
                 };
@@ -61,7 +59,9 @@
                 if(settings.preGrowCallback!=null){
                   newHeight=settings.preGrowCallback($self,shadow,newHeight,minHeight);
                 }
-                
+
+                console.log(newHeight);
+
                 $self.height(newHeight);
                 
                 if(settings.postGrowCallback!=null){
