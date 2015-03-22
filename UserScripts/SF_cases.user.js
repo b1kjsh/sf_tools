@@ -10,6 +10,7 @@
 // @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
 // @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
 // @require     http://listjs.com/no-cdn/list.js
+// @require     https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js
 // @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js
 // @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/jquery.autogrow-textarea.js
 // @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css
@@ -19,8 +20,9 @@
 // ==/UserScript==
 
 $(document).ready(function() {
-	var case_status = ["Waiting on Case Owner","Escalated to Engineering"];
-	var case_updates= ["tfs","update"];
+	var case_status = [["Waiting on Case Owner","Set Case to 'Waiting on Case Owner'",""],
+					["Escalated to Engineering","Set Case to 'Escalated to Engineering'",""]];
+	var case_updates= [["tfs", "Set TFS ID on Case","tfs 123456"],["update", "Create Case Comments/Update Case","update *Optional=[internal|PSE|pse|TSE|tse]"]];
 	var jh_CSS = GM_getResourceText("jh_CSS");
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
     GM_addStyle (jh_CSS);
@@ -28,20 +30,21 @@ $(document).ready(function() {
 
 	function init() {
 		$('body').append('<div id="myEditBox" />');
+		$('body').append('<div id="myEditBox2" />');
 		$('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar" id="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
-
+		$('#jh-uniwrapper').draggable();
 		$.each(case_status, function(i, item) {
 			var t = i+1
-		      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_status" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
+		      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_status" name="' + item[0].valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item[0].valueOf() + '</a><div><p class="jh-pdesc">'+ item[1].valueOf() +'</p></div></div></li>');
 		});  
 
 		$.each(case_updates, function(i, item) {
-			var t = i+1
-		      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_updates-args" name="' + item.valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item.valueOf() + '</a><p class="jh-pdesc">This is an example of a long description for the action</p></div></li>');
+			var t = i+2
+		      $('#jh-uniwrapper').find('.list').append('<li tabindex="'+t+'"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_updates-args" name="' + item[0].valueOf().replace(/\s/g,'_').toLowerCase() + '">' + item[0].valueOf() + '</a><div><p class="jh-pdesc L">'+ item[1].valueOf() +'</p><p class="jh-pdesc R">'+ item[2].valueOf() +'</p></div></div></li>');
 		});  
 		
 		$("a.jh-case_status").click(function(){
-			getEditPage($(this).text());
+			getEditPage($(this).text(),"PSEstatus");
 		});
 		
 		// $("a.jh-case_updates-args").click(function(){
@@ -52,7 +55,7 @@ $(document).ready(function() {
 		  	console.log("here");
 		  if (e.which == 13) {
 
-		    getEditPage($(this).find('a').text());
+		    getEditPage($(this).find('a').text(),"PSEstatus");
 		}});
 
 		$('#jh-unibar').keypress(function (e) {
@@ -76,7 +79,12 @@ $(document).ready(function() {
 		var listObj = new List('jh-uniwrapper', options);
 
 		$('#jh-unibar').on('keydown', function(e) {
-			    console.log(e.keyCode.toString() + " " + e.which.toString());
+		    console.log(e.keyCode.toString() + " " + e.which.toString());
+		//	$('.jh-unilinkw').first().addClass('jh-hover');			    
+		 //    $('.list').find('li').each(function(index, el) {
+		 //    	if (index > 0)
+		 //    		$(this).removeClass('jh-hover');
+		 //    });
 		    if ((e.keyCode || e.which) == 9) {
 		        $('.jh-unilinkw').parent('li').first().focus();    
 		        if ($('.jh-textarea').length)
@@ -88,6 +96,7 @@ $(document).ready(function() {
 			    }}); 
 		        e.preventDefault(); 
 	    }});
+
 		
 	}
 
@@ -104,7 +113,11 @@ $(document).ready(function() {
 				$('.jh-textarea').focus();    
 				break;
     		default:
-    			alert("unknown command");
+    			if ($('.list').find('li').length < 2 && $.inArray(case_status,value)){
+    				alert("found it");
+    			} else {
+    				alert("didn't find anything");
+    			}
     			break;
     	}
     }
@@ -123,6 +136,7 @@ $(document).ready(function() {
 			console.log("loaded Edit Page");
 			if (value.match(/[0-9]{2,}/) && type == "tfs"){
 				$('#00N30000004r0fX').val(value);
+
 			}
 			if (type == "PSEstatus"){
 				console.log("found escalation status");
@@ -132,6 +146,9 @@ $(document).ready(function() {
 				console.log("found case status");
 				$('#cas7').val(value);
 			}
+			// $(this).find("form").submit(function(event) {
+			// 	return false;
+			// });
             $(this).find("form").find(".btn[name='save']").click();
 		});
 		hideunibar();
@@ -142,7 +159,6 @@ $(document).ready(function() {
 		var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?parent_id=[0-9a-zA-Z]{2,}&retURL=%[a-zA-Z0-9]{2,})',null,'[a-zA-Z]{2,}'\);$/,"$2");
 		console.log(url);
 
-				
 		// <textarea cols="80" id="CommentBody" maxlength="4000" name="CommentBody" onchange="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onclick="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeydown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeyup="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onmousedown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" rows="8" tabindex="2" type="text" wrap="soft" style="background-image: none; background-position: 0% 0%; background-repeat: repeat;"></textarea>
 		if ($('#jh-unitextw').length)
 			$('#jh-unitextw').remove()
@@ -152,7 +168,6 @@ $(document).ready(function() {
 		$('.jh-textarea').autogrow(options);
 		$('#jh-unitextw').append('<div id="jh-counter"></div>');
 		$('.jh-textarea').on('keydown', function() {
-
 			$('#jh-counter').text($(this).val().length + '/4000');
 		});
 
@@ -183,13 +198,17 @@ $(document).ready(function() {
 		$('body').on('keydown', function(e) {	
 	    	if(e.altKey && e.keyCode == 83){
 	    		var jh_text = $('.jh-textarea').val();
+	    		hideunibar();
 	    		console.log("detected alt+s");
 	    		console.log(jh_text);
 	    		$('#myEditBox').load(url, function() {
 	    			console.log('getting case comment edit page');
 	    			$('#CommentBody').val(jh_text);
-	    			if (string.length < 1)
+	    			if (string.length < 1){
 	    				$('#IsPublished').prop('checked', 'true');
+	    			}
+	    			
+	    			$(this).find("form").find(".btn[name='save']").click();
 	    		});
 	    	}
     	});

@@ -25,6 +25,7 @@
     padding-right: 3px;
     padding-bottom: 3px;
     padding-top: 3px;
+    overflow:auto;
 }
 .jh-pdesc {
     font-size: 12px;
@@ -36,6 +37,20 @@
     -webkit-padding-after: 6px;
     padding-right: 15px;
     color:#9b9b9b;
+    text-align: right;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.R {
+    font-weight: bold;   
+    text-align: right;
+    width: -60%;
+}
+
+.L {
+    float:left;
+    width: 40%;
 }
 
 .jh-unilist { 
