@@ -148,7 +148,8 @@ $(document).ready(function() {
 			$('#jh-unitextw').remove()
 
 		$('#jh-uniwrapper').append('<div id="jh-unitextw"><textarea class="jh-textarea" maxlength="4000" /></div>');
-		$('.jh-textarea').autogrow();
+		var options = { maxHeight: 600 };
+		$('.jh-textarea').autogrow(options);
 		$('#jh-unitextw').append('<div id="jh-counter"></div>');
 		$('.jh-textarea').on('keydown', function() {
 
