@@ -36,8 +36,8 @@
             {
                 var times = function(string, number)
                 {
-                    if (number > 100)
-                        number = 100
+                    if (number > 50)
+                        number = 50
                     for (var i=0, r=''; i<number; i++) r += string;
                     return r;
                 };
