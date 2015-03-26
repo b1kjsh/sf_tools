@@ -7,6 +7,7 @@
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
 // @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
 // @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
+// @updateURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
 // @copyright  2015+, Josh Howard
 // ==/UserScript==
 

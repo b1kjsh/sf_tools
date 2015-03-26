@@ -16,10 +16,12 @@
 // @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css
 // @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout_unibar.css
 // @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_cases.user.js
+// @updateURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_cases.user.js
 // @copyright  2014+, Josh Howard
 // ==/UserScript==
 
 $(document).ready(function() {
+	
 	var case_status = [["Waiting on Case Owner","Set Case to 'Waiting on Case Owner'",""],
 					["Escalated to Engineering","Set Case to 'Escalated to Engineering'",""]];
 	var case_updates= [["tfs", "Set TFS ID on Case","tfs 123456"],["update", "Create Case Comments/Update Case","update *Optional=[internal|PSE|pse|TSE|tse]"]];
@@ -27,6 +29,9 @@ $(document).ready(function() {
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
     GM_addStyle (jh_CSS);
     GM_addStyle (jh_CSS_layout);
+
+	var tfs = $("#00N30000004r0fX_ileinner").text();
+	$("#00N30000004r0fX_ileinner").wrapInner('<a href="http://slc-tfs3:8080/tfs/LD/SSM/Global%20Services/_workitems#_a=edit&id=' + tfs + '"></a>');
 
 	function init() {
 		$('body').append('<div id="myEditBox" />');
@@ -46,6 +51,8 @@ $(document).ready(function() {
 		$("a.jh-case_status").click(function(){
 			getEditPage($(this).text(),"PSEstatus");
 		});
+
+		
 		
 		// $("a.jh-case_updates-args").click(function(){
 		// 	getEditPage($('#jh-unibar').val());
@@ -114,12 +121,37 @@ $(document).ready(function() {
 				break;
     		default:
     			if ($('.list').find('li').length < 2 && $.inArray(case_status,value)){
-    				alert("found it");
+    				console.log("found it");
+    				$('.list').find('li').find('div').find('a').click();
     			} else {
-    				alert("didn't find anything");
+    				console.log("didn't find anything");
     			}
     			break;
     	}
+    }
+
+    function submitdata() {
+    	console.debug('entered submitdata()');
+    	// TODO: Add REST API Support to add comments
+    	// http://stackoverflow.com/questions/20155531/converting-curl-cmd-to-jquery-ajax
+    	// http://www.salesforce.com/us/developer/docs/api_rest/api_rest.pdf
+		$.ajax({
+			url: "http://www.example.com/api",
+			beforeSend: function(xhr) { 
+				xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password")); 
+			},
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			processData: false,
+			data: '{"foo":"bar"}',
+			success: function (data) {
+				alert(JSON.stringify(data));
+			},
+			error: function(){
+				console.error("submitdata()","Cannot get data");
+			}
+		});
     }
 
 
@@ -133,6 +165,7 @@ $(document).ready(function() {
 		var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?retURL=%[0-9a-zA-Z\/]{2,})(','([A-Z]*)','([A-Za-z]*)'\);)/,"$2")
 		console.log(url);
 		$('#myEditBox').load(url , function() {
+			var action = $('#editPage').attr('action');
 			console.log("loaded Edit Page");
 			if (value.match(/[0-9]{2,}/) && type == "tfs"){
 				$('#00N30000004r0fX').val(value);
@@ -146,7 +179,10 @@ $(document).ready(function() {
 				console.log("found case status");
 				$('#cas7').val(value);
 			}
-			// $(this).find("form").submit(function(event) {
+			// $("#editPage").submit(function(event) {
+			// 	$('#myEditBox2').load(action,function() {
+			// 		/* Act on the event */
+			// 	});
 			// 	return false;
 			// });
             $(this).find("form").find(".btn[name='save']").click();
