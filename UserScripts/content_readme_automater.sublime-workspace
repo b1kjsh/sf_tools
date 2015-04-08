@@ -1,0 +1,993 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"jh-uni",
+				"jh-unilinkw"
+			],
+			[
+				"first",
+				"firstChild	Node"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"index",
+				"indexOf(${0:searchValue})	String"
+			],
+			[
+				"case_",
+				"case_status"
+			],
+			[
+				"sub",
+				"submit	.submit()"
+			],
+			[
+				"le",
+				"length	String"
+			],
+			[
+				"prop",
+				"prop	.prop() - single"
+			],
+			[
+				"ma",
+				"match(${0:regexp})	String"
+			],
+			[
+				"jh-unili",
+				"jh-unilinkw"
+			],
+			[
+				"fistch",
+				"firstChild()	TreeWalker"
+			],
+			[
+				"focu",
+				"focusout	.focusout()"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"each",
+				"each	.each()"
+			],
+			[
+				"at",
+				"attr	.attr() - single"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"foc",
+				"focusout	.focusout()"
+			],
+			[
+				"positi",
+				"position = 'absolute'	Style CSS"
+			],
+			[
+				"cs",
+				"css	.css() - multiple"
+			],
+			[
+				"ready",
+				"ready	$(document).ready"
+			],
+			[
+				"fun",
+				"function(){\n	$0\n})();	(function(){\n	$0\n})();"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"css",
+				"css	.css() - single"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"appen",
+				"appendTo	.appendTo()"
+			],
+			[
+				"app",
+				"appendTo	.appendTo()"
+			],
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"repl",
+				"replace(${0:regexp|substr}, 'string')	String"
+			],
+			[
+				"toggle",
+				"toggleClass	.toggleClass()"
+			],
+			[
+				"toggl",
+				"toggleClass	.toggleClass()"
+			],
+			[
+				"ti",
+				"title	Document"
+			],
+			[
+				"align",
+				"alignItems	Style CSS"
+			],
+			[
+				"background",
+				"backgroundColor	Style CSS"
+			],
+			[
+				"aler",
+				"alert(${0:message})	Window"
+			],
+			[
+				"landesk",
+				"LANDesk"
+			],
+			[
+				"U",
+				"UserScript"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"top",
+				"topNames"
+			],
+			[
+				"pm",
+				"PM"
+			],
+			[
+				"m",
+				"mClick"
+			],
+			[
+				"res",
+				"resp_00"
+			],
+			[
+				"color",
+				"colorOldies"
+			],
+			[
+				"get",
+				"getCases"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"icon",
+				"icon"
+			],
+			[
+				"mP",
+				"mPasswordBool"
+			],
+			[
+				"mPW",
+				"mPW"
+			],
+			[
+				"em",
+				"emit"
+			],
+			[
+				"email",
+				"email"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"ev",
+				"evt6"
+			],
+			[
+				"evt",
+				"evt5"
+			],
+			[
+				"sch",
+				"schedAction"
+			],
+			[
+				"wor",
+				"worker"
+			],
+			[
+				"wo",
+				"work"
+			],
+			[
+				"mk",
+				"myMK"
+			],
+			[
+				"contentS",
+				"contentScriptFile"
+			],
+			[
+				"Meeting",
+				"Meeting_Key"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"view	",
+				"View: Toggle Side Bar"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Set Syntax: jQuery (JavaScript)"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"project",
+				"Project: Save As"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"clear",
+				"GutterColor: Clear Cache"
+			],
+			[
+				"gutter",
+				"GutterColor: Fix Current Color Scheme"
+			],
+			[
+				"documen",
+				"Snippet: $(document).ready"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"fix",
+				"GutterColor: Fix Current Color Scheme"
+			],
+			[
+				"new file",
+				"File: New File Relative to Current View"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"gutte",
+				"GutterColor: Fix Current Color Scheme"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"gut",
+				"GutterColor: Fix Current Color Scheme"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"word",
+				"Word Wrap: Toggle"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"push",
+				"Git (SideBarGit): Push"
+			],
+			[
+				"commit",
+				"Git (SideBarGit): Commit Amend"
+			],
+			[
+				"commit push",
+				"Git (SideBarGit): Add & Commit & Push…"
+			],
+			[
+				"comm",
+				"Git (SideBarGit): Commit…"
+			],
+			[
+				"syntax def",
+				"z:AAAPackageDev: New JSON Syntax Definition"
+			],
+			[
+				"todo",
+				"TodoReview: Project Files"
+			],
+			[
+				"raw s",
+				"z:AAAPackageDev: New Raw Snippet"
+			],
+			[
+				"com",
+				"Git (SideBarGit): Add & Commit & Push…"
+			],
+			[
+				"commit pus",
+				"Git (SideBarGit): Add & Commit & Push…"
+			],
+			[
+				"projec",
+				"Project: Add Folder"
+			],
+			[
+				"add",
+				"Git (SideBarGit): File: Add"
+			],
+			[
+				"git add",
+				"Git (SideBarGit): File: Add"
+			],
+			[
+				"open",
+				"Git (SideBarGit): Open Git Ignore"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				"Git (SideBarGit): Add & Commit…"
+			],
+			[
+				"sidebar",
+				"Git (SideBarGit): Push"
+			],
+			[
+				"github",
+				"Github: Open File"
+			],
+			[
+				"isntal",
+				"Package Control: Install Package"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"new",
+				"z:AAAPackageDev: New Raw Snippet"
+			],
+			[
+				"new snipp",
+				"z:AAAPackageDev: New Raw Snippet from Snippet"
+			],
+			[
+				"new snip",
+				"z:AAAPackageDev: New Raw Snippet"
+			],
+			[
+				"aaa",
+				"z:AAAPackageDev: New Raw Snippet"
+			],
+			[
+				"snippet: doc",
+				"Snippet: jQuery ready function"
+			],
+			[
+				"set java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"snippet doc",
+				"Snippet: jQuery ready function"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"listp",
+				"Package Control: List Packages"
+			],
+			[
+				"power",
+				"Set Syntax: PowerShell"
+			],
+			[
+				"diff",
+				"FileDiffs: Menu"
+			],
+			[
+				"filedi",
+				"FileDiffs: Menu"
+			],
+			[
+				"dif",
+				"FileDiffs: Menu"
+			],
+			[
+				"package control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: installp",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 520.0
+	},
+	"console":
+	{
+		"height": 127.0,
+		"history":
+		[
+			"clear",
+			"ls",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"clear",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')",
+			"cmd",
+			"powershell",
+			"ls",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Josh/Documents/Code/Community"
+	],
+	"file_history":
+	[
+		"/D/Downloads/Content Release Notes (4).txt",
+		"/C/Users/Josh/Documents/Code/Community/content_readme.html",
+		"/C/Users/Josh/Documents/Code/Community/readme_automater.user.js",
+		"/C/Users/Josh/Documents/Code/Community/readme_automater",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/css/layout_unibar.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_color_coding.user.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/fuzzy/jquery.autogrow-textarea.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_cases.user.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/fuzzy/list.fuzzysearch.js",
+		"/D/Downloads/ManagedPlanet.Core.Barcode.exe (1).log",
+		"/D/Downloads/OUTPUT.SCN",
+		"/D/Downloads/1006b296-0431-454f-be87-50c56a153156.xml",
+		"/C/Users/Josh/Desktop/af526c27-3f77-4339-a5a4-a99c9b42b317.xml",
+		"/C/Users/Josh/Desktop/4a7b0b59-81ae-4887-a29f-271925111735.xml",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/css/mycss.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/css/layout.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_hotkeys.user.js",
+		"/C/Users/Josh/Documents/GitHub/fuzzy/examples/directors.html",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/less/core.less",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/_form.html",
+		"/C/Users/Josh/Documents/Code/brute_enum4linux.txt",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/css/_layout_dave.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/less/larger.less",
+		"/D/Downloads/{4FB40802-6840-A846-A993-8FF239977637}-20150305154045.SCN",
+		"/D/Downloads/Console.exe (3).log",
+		"/C/Users/Josh/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/ZEX3DLHY/Archive Computers-201522715156.log",
+		"/C/Users/Josh/Desktop/Archive after 90days of inactivity-201532202256.log",
+		"/C/Users/Josh/AppData/Local/Temp/7zO3FEE.tmp/MPRunSched-20150220173654.log",
+		"/C/Users/Josh/AppData/Local/Temp/7zO4BC6.tmp/MPRunSched-20150220173427.log",
+		"/C/Users/Josh/AppData/Local/Temp/7zO579E.tmp/MPRunSched-20150220172924.log",
+		"/C/Users/Josh/AppData/Local/Temp/7zO5D2D.tmp/MPRunSched-20150220172922.log",
+		"/C/Users/Josh/AppData/Local/Temp/7zO6154.tmp/MPRunSched-20150220172921.log",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Inactive_Customer_Archive.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/GutterColor.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/Less2Css/README.md",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/myless/variables.less",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/css/font-awesome.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/scss/_variables.scss",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/less2css.sublime-settings",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/myless/variables.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/less/variables.less",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/LESS/README.md",
+		"/C/Users/Josh/Google Drive/Apps/webextool/data/build_sched_tools.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_webex_sched.user.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/Resources/font-awesome/css/font-awesome.min.css",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_Scheduling.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/.jshintrc",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_Inactivity_Reponses.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/Gutter Color/GutterColor.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/SublimeMagick.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/SublimeMagick/SublimeMagick.sublime-settings",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_webex_calls.user.js",
+		"/D/Downloads/List Summary Meeting Java.txt",
+		"/D/Downloads/List Summary Meeting ASP.txt",
+		"/D/Downloads/Lst Summary Meeting php.txt",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/master.user.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/SF_Inactivity_Reponses.user.js~RF1075f38b.TMP",
+		"/C/Users/Josh/Downloads/crholandesk_countryroad_com_au (2)/crholandesk_countryroad_com_au.cer",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/README.md",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/TodoReview/Default.sublime-keymap",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/TodoReview/Default.sublime-mousemap",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/TodoReview.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Mozilla/Firefox/Profiles/9iqe49pf.default/gm_scripts/SF_color_coding/SF_color_coding.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript/TODO.sublime-snippet",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/TempEntitlement_Script.user.js",
+		"/C/Users/Josh/AppData/Roaming/Mozilla/Firefox/Profiles/9iqe49pf.default/gm_scripts/SF_Inactivity_Reponses/SF_Inactivity_Reponses.user.js",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_ldsupport.zip/ldsupport/Discovery-jhowtest-2014101316215.log",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/.git/config",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/UserScripts/test",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/SF_color_coding.user.js",
+		"/C/Users/Josh/Documents/GitHub/sf_tools/.gitignore",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/SideBarGit/SideBarGit.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/SideBarGit.sublime-settings",
+		"/C/Users/Josh/Downloads/AlertService (1).log",
+		"/C/Users/Josh/Documents/Code/Salesforce/SF_color_coding.user.js",
+		"/C/Users/Josh/Documents/Code/Salesforce/SF_Inactivity_Reponses.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript/Log-to-Console.sublime-snippet",
+		"/C/Users/Josh/Downloads/AMTConfigDll.WebService.log",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_Case_00800522.zip/Case_00800522/prov_schedule.exe.log",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_LANDesk Setup LDMS96 msi (2).zip/LANDesk.Setup.LDMS96.msi.log",
+		"/C/Users/Josh/Downloads/AlertService.log",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript/userscript-header.sublime-snippet",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript/userscript.sublime-snippet",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript/jQuery/jQuery-Function.sublime-snippet",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_LANDesk Setup LDMS96 msi.zip/LANDesk.Setup.LDMS96.msi.log",
+		"/C/Users/Josh/Downloads/LANDesk.Setup.95Upgrade.Patch.msi.log",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/sublime_tfs.sublime-settings",
+		"/C/Users/Josh/Documents/Code/Salesforce/master.user.js",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/SendToPasteBin.sublime-settings",
+		"/C/Users/Josh/AppData/Local/Temp/HIIClient.log",
+		"/C/Users/Josh/AppData/Local/Temp/HIIClient.old",
+		"/C/Users/Josh/AppData/Local/Temp/DISM-LANDeskHII.log",
+		"/C/Users/Josh/Documents/test.xml",
+		"/C/Users/Josh/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/U9PMGRWG/u_ex140918.log",
+		"/C/Users/Josh/Desktop/notes",
+		"/C/Users/Josh/AppData/Local/Temp/setupapi.offline.log",
+		"/C/Users/Josh/AppData/Local/Temp/AMTConfigDll.WebService.log",
+		"/C/Users/Josh/AppData/Local/Microsoft/Windows/INetCache/Content.Outlook/U9PMGRWG/100114.SCN",
+		"/C/Users/Josh/Downloads/Minty Wear.face",
+		"/C/Users/Josh/AppData/Local/Temp/Console.exe.log",
+		"/C/Users/Josh/AppData/Local/Temp/u_ex140909.log",
+		"/C/Users/Josh/AppData/Local/Temp/New Adobe Software License Import1-201499154543.log",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_mp_log.zip/mp_log/MPCore.exe.20148283516.log",
+		"/C/Users/Josh/Documents/applicationHost.config",
+		"/C/Users/Josh/Documents/applicationHostasdfasdfadsf/applicationHost.config",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_Every log starting with AMT.zip/AMTProvMgr.log",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_Every log starting with AMT.zip/AMTConfig.dll.log",
+		"/C/Users/Josh/Documents/SYNTAX.xml",
+		"/C/Program Files (x86)/Zultys/MXIE/Bin/i18n/mxie_en_AU.qm",
+		"/C/Program Files (x86)/Zultys/MXIE/Bin/mxie.exe.manifest",
+		"/C/Users/Josh/AppData/Local/Temp/7zO90B8.tmp/LANDesk.Scheduler.GlobalScheduler.exe.log",
+		"/C/Users/Josh/Documents/apphostcfg.zip",
+		"/C/Users/Josh/Downloads/MP_Log/MP_Log/MPCore.exe.2014630101458.log",
+		"/C/Users/Josh/Google Drive/Work/LANDesk/SQL Scripts/SQLTableSize.sql",
+		"/C/Users/Josh/Google Drive/Work/LANDesk/SQL Scripts/SQLDetermineIndex Fragmentation.sql",
+		"/C/Users/Josh/Desktop/test.rpt",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_LDMSconsoleIssue.zip/LDMSconsoleIssue/Console.exe(core).log",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_LDMSconsoleIssue.zip/LDMSconsoleIssue/Console.exe(client).log",
+		"/C/Users/Josh/SkyDrive/Documents/Work/applicationHost(1).config",
+		"/C/Users/Josh/Desktop/ldms.root",
+		"/C/Users/Josh/Downloads/MP_Log/MP_Log/Apple Warranty Info-2014723115440.log",
+		"/C/Users/Josh/Documents/applicationHost.zip",
+		"/C/Users/Josh/Google Drive/Work/LANDesk/homework/CodingTask.cs",
+		"//c9-5-1/C$/Users/Administrator/AppData/Local/Temp/LANDesk.Setup.MainMsi95.Uninstall.msi.log",
+		"/C/Users/Josh/AppData/Roaming/Mozilla/Firefox/Profiles/9iqe49pf.default/gm_scripts/SF_Scheduling/SF_Scheduling.user.js",
+		"/C/Users/Josh/AppData/Local/Temp/Temp1_documents-export-2014-07-08.zip/persistent(2).sfs"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"dragandrophandler",
+			"div",
+			"iframe",
+			"div",
+			"toggleClass",
+			"yellow case",
+			"orange case",
+			"red Case",
+			"hourdiff",
+			"diffdate",
+			"marray",
+			"todatestring",
+			"tostriNg",
+			"Casess",
+			"caSe",
+			"hourdiFf",
+			"if \\(debug\\) \\{(console.debug\\([\\.\\,\\\"\\+\\:\\$a-zA-Z0-9\\'\\ \\(\\)\\-]{2,}\\)\\;)\\}",
+			"if \\(debug\\) \\{(console.debug\\([a-zA-Z0-9\\'\\ \\(\\)\\-]{2,}\\)\\;)",
+			"if \\(debug\\) \\{(console.debug\\([a-zA-Z'\\s]{2,}\\)\\;)",
+			"if \\(debug\\) \\{(console.debug\\([a-zA-Z']{2,}\\)\\;)",
+			"if \\(debug\\) \\{(console.debug\\([a-zA-Z']{2,}\\);)",
+			"(if \\(debug\\) \\{console.)(log|info)",
+			"log",
+			"alert",
+			"geteditpage",
+			"click\\(\\)",
+			"geteditpage",
+			"<p class=\"jh-pdesc\">'+ item[1].valueOf() +'</p>",
+			"-",
+			"esc:",
+			"valueName:",
+			"'",
+			"{",
+			"options",
+			"minheight",
+			"size",
+			"hide",
+			"// ==UserScript==\n// @name       SF_cases\n// @namespace  https://github.com/b1kjsh/sf_tools\n// @version    0.10\n// @grant       GM_getResourceText\n// @grant       GM_addStyle\n// @description  Days Since Updated and the Case Status column is required for this script.\n// @include     https://na19.salesforce.com/500*\n// @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js\n// @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js\n// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js\n// @require     http://listjs.com/no-cdn/list.js\n// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js\n// @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css\n// @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout_unibar.css\n// @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_cases.user.js\n// @copyright  2014+, Josh Howard\n// ==/UserScript==\n\n$(document).ready(function() {\n	var case_status = [\"Waiting on Case Owner\",\"Escalated to Engineering\"];\n	var case_updates= [\"tfs\",\"update\"];\n	$('body').append('<div id=\"myEditBox\" />');\n	var jh_CSS = GM_getResourceText(\"jh_CSS\");\n    var jh_CSS_layout = GM_getResourceText(\"jh_CSS_layout\");\n    GM_addStyle (jh_CSS);\n    GM_addStyle (jh_CSS_layout);\n\n    function analizeText(value) {\n    	console.log(value);\n    	var array = value.split(\" \");\n    	switch(array[0]){\n    		case \"tfs\":\n	    		getEditPage(array[1], array[0]);\n    			break;\n			case \"update\":\n				getCaseCommentPage(array[1]);\n				break;\n    		default:\n    			alert(\"unknown command\");\n    			break;\n    	}\n    }\n\n\n    function hideunibar() {\n    	$('#jh-unibar').val('');\n    	$('#jh-uniwrapper').hide();\n    }\n\n	function getEditPage(value, type) {\n		var geturl = $('input[name=\"edit\"]').attr('onclick');\n		var url = geturl.toString().replace(/(^navigateToUrl\\(')([0-9a-zA-Z\\/]{2,}\\?retURL=%[0-9a-zA-Z\\/]{2,})(','([A-Z]*)','([A-Za-z]*)'\\);)/,\"$2\")\n		console.log(url);\n		$('#myEditBox').load(url , function() {\n			console.log(\"loaded Edit Page\");\n			if (value.match(/[0-9]{2,}/) && type == \"tfs\"){\n				$('#00N30000004r0fX').val(value);\n			}\n			if (type == \"PSEstatus\"){\n				console.log(\"found escalation status\");\n				$('#00N30000004r0fn').val(value);\n			}\n			if (type == \"CASEstatus\"){\n				console.log(\"found case status\");\n				$('#cas7').val(value);\n			}\n            $(this).find(\"form\").find(\".btn[name='save']\").click();\n		});\n		hideunibar();\n	}\n\n	function getCaseCommentPage(value){\n		var geturl = $('input[name=\"newComment\"]').attr('onclick');\n		var url = geturl.toString().replace(/(^navigateToUrl\\(')([0-9a-zA-Z\\/]{2,}\\?parent_id=[0-9a-zA-Z]{2,}&retURL=%[a-zA-Z0-9]{2,})',null,'[a-zA-Z]{2,}'\\);$/,\"$2\");\n		console.log(url);\n\n				\n		// <textarea cols=\"80\" id=\"CommentBody\" maxlength=\"4000\" name=\"CommentBody\" onchange=\"handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');\" onclick=\"handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');\" onkeydown=\"handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');\" onkeyup=\"handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');\" onmousedown=\"handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');\" rows=\"8\" tabindex=\"2\" type=\"text\" wrap=\"soft\" style=\"background-image: none; background-position: 0% 0%; background-repeat: repeat;\"></textarea>\n		if ($('#jh-unitextw').length)\n			$('#jh-unitextw').remove()\n\n		$('#jh-uniwrapper').append('<div id=\"jh-unitextw\"><textarea class=\"jh-textarea\" maxlength=\"4000\" /></div>');\n				var string = '';\n		switch(value){\n			case \"internal\":\n				string = \"***INTERNAL COMMENT***\";\n				break;\n			case \"pse\":\n				string = \"***PSE COMMENT***\";\n				break;\n			case \"PSE\":\n				string = \"***COMMENT TO PSE***\";\n				break;\n			case \"tse\":\n				string = \"***TSE COMMENT***\";\n				break;\n			case \"TSE\":\n				string = \"***COMMENT TO TSE***\";\n				break;\n			default:\n				string = '';\n				break;\n		}\n\n		$('.jh-textarea').val(string);\n		$('.jh-textarea').on('keydown', function(e) {	\n	    	if(e.altKey && e.keyCode == 83){\n	    		var jh_text = $('.jh-textarea').val();\n	    		console.log(\"detected alt+s\");\n	    		console.log(jh_text);\n	    		$('#myEditBox').load(url, function() {\n	    			console.log('getting case comment edit page');\n	    			$('#CommentBody').val(jh_text);\n	    			if (string.length < 1)\n	    				$('#IsPublished').prop('checked', 'true');\n	    		});\n	    	}\n    	});\n\n	}\n\n	$('#sidebarCell').prepend('<div id=\"jh-uniwrapper\"><input type=\"text\" class=\"jh-unibar\" id=\"jh-unibar\"></input><ul class=\"list jh-unilist\"></ul></div>');\n\n	$.each(case_status, function(i, item) {\n		var t = i+1\n	      $('#jh-uniwrapper').find('.list').append('<li tabindex=\"'+t+'\"><div class=\"jh-unilinkw\"><a class=\"name jh-unilink jh-case_status\" name=\"' + item.valueOf().replace(/\\s/g,'_').toLowerCase() + '\">' + item.valueOf() + '</a><p class=\"jh-pdesc\">This is an example of a long description for the action</p></div></li>');\n	});  \n\n	$.each(case_updates, function(i, item) {\n		var t = i+1\n	      $('#jh-uniwrapper').find('.list').append('<li tabindex=\"'+t+'\"><div class=\"jh-unilinkw\"><a class=\"name jh-unilink jh-case_updates-args\" name=\"' + item.valueOf().replace(/\\s/g,'_').toLowerCase() + '\">' + item.valueOf() + '</a><p class=\"jh-pdesc\">This is an example of a long description for the action</p></div></li>');\n	});  \n	\n	$(\"a.jh-case_status\").click(function(){\n		getEditPage($(this).text());\n	});\n	\n	// $(\"a.jh-case_updates-args\").click(function(){\n	// 	getEditPage($('#jh-unibar').val());\n	// });\n\n	$('.jh-unilinkw').parent('li').keypress(function (e) {\n	  	console.log(\"here\");\n	  if (e.which == 13) {\n\n	    getEditPage($(this).find('a').text());\n	}});\n\n	$('#jh-unibar').keypress(function (e) {\n	  	console.log(\"here\");\n	  if (e.which == 13) {\n	  	console.log($(this).val());\n	    analizeText($(this).val());\n	}});\n\n	var options = {\n	  valueNames: [ 'name' ],\n	  plugins: [ListFuzzySearch()],\n	  searchClass: 'jh-unibar',\n		location: 0,\n		distance: 100,\n		threshold: 0.4,\n		multiSearch: true\n	};\n	$('div.jh-unilinkw').focusin(function(){$(this).toggleClass('jh-hover')});\n	$('div.jh-unilinkw').focusout(function(){$(this).toggleClass('jh-hover')});\n	var listObj = new List('jh-uniwrapper', options);\n\n	$('#jh-unibar').on('keydown', function(e) {\n		    console.log(e.keyCode.toString() + \" \" + e.which.toString());\n	    if ((e.keyCode || e.which) == 9) {\n	        $('.jh-unilinkw').parent('li').first().focus();    \n	        if ($('.jh-textarea').length)\n	        	$('.jh-textarea').focus();    \n	        $('.jh-unilinkw').parent('li').last().on('keydown', function(e) {\n		    if ((e.keyCode || e.which) == 9) {\n		    	$('#jh-unibar').focus();\n		        e.preventDefault(); \n		    }}); \n	        e.preventDefault(); \n    }});\n    $('.jh-unilinkw').on('keydown',function(e) {\n    	if (e.keyCode == 27){\n    		alert(\"message\");\n    		$('#jh-unibar').focus();\n    	}\n	});\n    \n    $(document).bind('keydown', 'alt+u', function(){\n    	console.log(\"detected alt+u\");\n    	if ($('#jh-uniwrapper').is(\":visible\")){\n       		$('#jh-uniwrapper').hide();\n    	} else {\n    		$('#jh-uniwrapper').show();\n			$('#jh-unibar').focus();\n    	}\n    });\n    \n});",
+			"uniwrapper",
+			"unilink",
+			"items",
+			"u",
+			"shift+",
+			".name",
+			"shift",
+			"class=\"jh-unibar\"",
+			".find(\"div\")",
+			"p",
+			"SF_color_coding",
+			"linkbar",
+			"sub_nav",
+			"insertafter",
+			"filterLinks",
+			"10px",
+			".append",
+			"98c93c",
+			";",
+			"hidden",
+			"b42025",
+			"EBC299",
+			"9bffc8",
+			"ffaf9b",
+			"replace",
+			"checkbox",
+			"select",
+			"logo",
+			"}",
+			"{",
+			".css",
+			"EBC299",
+			"high",
+			".jh",
+			"\\",
+			"”",
+			"“",
+			"\\",
+			"Users",
+			"\\",
+			"color",
+			"$('.x-grid3-col-00N1300000BQsmE')",
+			"Open: ",
+			".x-grid3-col-00N30000004r0fd",
+			"ADDRESS",
+			"LEFT OUTER JOIN",
+			"mdate",
+			"SCHEDULE(",
+			"<",
+			"placeholder",
+			";",
+			"margin-bottom-sm",
+			"+'",
+			"    ",
+			"\n",
+			"<li>",
+			"</",
+			"\n",
+			".ttf",
+			"..",
+			"user settings",
+			"'",
+			"mPassword",
+			"                   ",
+			"+",
+			"\\",
+			"yoursite",
+			"\\",
+			":",
+			"network",
+			"parent.find('div').css('font-weight', 'bold')",
+			"$(this).parent(\"td\").parent(\"tr\").find('td')",
+			"c3",
+			"c1",
+			"c3",
+			"      ${",
+			"$",
+			" ",
+			"error",
+			"colorOldies",
+			"if ( hourDiff < 6 ){\n                // console.log(diffDate, hourDiff);\n            }",
+			"if ( hourDiff < 12 ){\n                // console.log(diffDate, hourDiff);\n            }",
+			"());\n",
+			"date",
+			"Date",
+			"date",
+			"if ($(this).find('img').attr('src') == '/img/samples/flag_green.gif'){\n                \n            }",
+			"`",
+			"get",
+			","
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Yellow Case",
+			"Orange Case",
+			"Red Case",
+			"hourDiff",
+			"diffDate",
+			"mArray",
+			"toDateString",
+			"toString",
+			"casess",
+			"Case",
+			"hourDiff",
+			"$1",
+			"$1debug",
+			"');\n",
+			".x-grid3-col-00N30000004r0gj",
+			"parent",
+			"cDate",
+			"Write-Host \" \" #Insert New Line",
+			"mEmail",
+			"email",
+			"WebEx",
+			" $('#",
+			"wins",
+			"windows",
+			"window"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 88.0
+	},
+	"project": "content_readme_automater.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"read",
+				"readme_automater"
+			],
+			[
+				"color",
+				"UserScripts\\SF_color_coding.user.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"def",
+				"C:\\Users\\Josh\\default project.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 259.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

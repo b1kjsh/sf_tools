@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.10
+// @version    0.15
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -31,7 +31,8 @@ $(document).ready(function() {
     GM_addStyle (jh_CSS_layout);
 
 	var tfs = $("#00N30000004r0fX_ileinner").text();
-	$("#00N30000004r0fX_ileinner").wrapInner('<a href="http://slc-tfs3:8080/tfs/LD/SSM/Global%20Services/_workitems#_a=edit&id=' + tfs + '"></a>');
+	if (tfs.match(/[0-9]{6}/))
+		$("#00N30000004r0fX_ileinner").wrapInner('<a href="http://slc-tfs3.landesk.com:8080/tfs/LD/SSM/Global%20Services/_workitems#_a=edit&id=' + tfs + '"></a>');
 
 	function init() {
 		$('body').append('<div id="myEditBox" />');
