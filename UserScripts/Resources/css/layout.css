@@ -1,21 +1,17 @@
+.jh-hidden {
+    display: none   !important;
+}
+
+.jh-background {
+    background-color:#e8e8e8    !important;
+}
+
 .jh-margin-2 {
     margin: 2px;
 }
 
 .jh-margin-ng6 {
     margin-top: -6px    !important;
-}
-
-
-
-
-nav {
-    background-color: #2e5e86   !important;
-}
-
-#tabBar a {
-    color: #F5F5F5;
-    font-size: 11px !important;    
 }
 
 .jh-search {
@@ -30,6 +26,21 @@ nav {
     z-index: 10;
     right: 1em;
     top: 3.2em;
+}
+
+.jh-refresh {
+    margin-left: 5px    !important;
+    margin-top: -2px   !important;
+    background-color: #fbfbfb !important;    
+}
+
+nav {
+    background-color: #2e5e86   !important;
+}
+
+#tabBar a {
+    color: #F5F5F5;
+    font-size: 11px !important;    
 }
 
 #tabBar img {
@@ -75,15 +86,8 @@ select.title {
     display: none   !important;
 }
 
-.jh-background {
-    background-color:#e8e8e8    !important;
-}
 .x-grid3-hd-row, .linkBar, .bottomNav {
     background-color:#e8e8e8    !important;
-}
-
-.jh-hidden {
-    display: none   !important;
 }
 
 .zen-active, .zen-active a, .jh-active, .jh-active a {
@@ -106,6 +110,7 @@ select.title {
 #bodyCell {
     background-color: #e8e8e8   !important;
 }
+
 .x-grid3-row {
     border: none    !important;
 }
@@ -126,11 +131,6 @@ select.title {
     clear: both !important;
 }
 
-.jh-refresh {
-    margin-left: 5px    !important;
-    margin-top: -2px   !important;
-    background-color: #fbfbfb !important;    
-}
 
 div.listButtons input {
   background: #fbfbfb   !important; 
