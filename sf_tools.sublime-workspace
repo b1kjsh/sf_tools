@@ -1,0 +1,254 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "// ==UserScript==\n// @name       SF_color_coding\n// @namespace  https://github.com/b1kjsh/sf_tools\n// @version    1.05\n// @grant       GM_getResourceText\n// @grant       GM_addStyle\n// @description  Days Since Updated and the Case Status column is required for this script.\n// @include     https://na19.salesforce.com/500?*\n// @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\n// @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js\n// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js\n// @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/Resources/fuzzy/list.fuzzysearch.min.js\n// @resource    jh_CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/mycss.css\n// @resource    jh_CSS_layout https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/css/layout_unibar.css\n// @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_color_coding.user.js\n// @copyright  2014+, Josh Howard\n// ==/UserScript==\nvar debug = false;\nconsole.log(\"---\" + GM_info.script.name + \" loaded in window version \" + GM_info.script.version + \"---\");\n\n// TODO: add logo somewhere https://c.na19.content.force.com/servlet/servlet.FileDownload?file=01513000002lPva\n\n// TODO: move the search bar\n    // Done!\n\n$(document).ready(function () {\n    // $('.x-grid3-col-ACTION_COLUMN').\n\n    var mArray = [];\n    var jh_CSS = GM_getResourceText(\"jh_CSS\");\n    var jh_CSS_layout = GM_getResourceText(\"jh_CSS_layout\");\n    GM_addStyle (jh_CSS);\n    // GM_addStyle (jh_CSS_layout);    \n\n    function getCases() {\n        var selector = $(\".x-grid3-td-CASES_CASE_NUMBER\");\n        // selector.css('background','#000000');\n        console.debug(selector.length);\n        selector.each(function() {\n            // console.debug('test');\n            var k = $(this).find('div').find('a').attr('href');\n            mArray.push(k);\n            // console.log('k is',k);\n            for (var i = mArray.length - 1; i >= 0; i--) {\n                // console.log('mArray',mArray[i]);\n                // $('body').append('<div id=\"m\">'+mArray[i]+'</div>');\n            }\n        });\n    }\n\n\n\n    function colorAged() {\n        console.info('colorAged()','---Checking Case Age---');\n        if(/Open Cases/.test($('select.title option:selected').html())){\n            if ($('.x-grid3-col-00N30000004r0gj').length){\n            // console.log('x-grid3-col-00N30000004r0gj', $('.x-grid3-col-00N30000004r0gj').length);\n            $('.x-grid3-col-00N30000004r0gj').each(function() {\n                            // console.log($(this).html());\n                            if (parseFloat($(this).html()) == parseFloat(1) && $(this).parent(\"td\").parent(\"tr\").find('.x-grid3-col-CASES_STATUS:contains(\"Waiting\")').length > 0){\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-low');\n                            }\n                            if (parseFloat($(this).html()) > parseFloat (1.00) ){\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-med');\n                            }\n                            if (parseFloat($(this).html()) > parseFloat(2.00) ) {\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-high');\n                            }\n                            if (parseFloat($(this).html()) > parseFloat(3.00) ) {\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-urgent');\n                            }            \n                        });    \n} else {\n    alert('Missing \"Time Since Last Updated\" column from case view');\n}\n// console.log('select.title does not contain \"Open Cases\"');\n}\ncheckPRT();\n}\n\nfunction checkPRT() {\n    console.info('checkPRT()','---Checking Case PRT---');\n    // if($('select.title').match(/Open Cases/)){\n        if(/Open Cases/.test($('select.title option:selected').html())){\n            if ($('.x-grid3-col-00N30000004r0gN').length){\n                $('.x-grid3-col-00N30000004r0gN').each(function() {\n\n                    var parent = $(this).parent(\"td\").parent(\"tr\").find('td');\n                    var mdate = new Date();\n                    var cdate = new Date($(this).html());\n                    console.debug(cdate.toDateString());\n                    var diffDate = cdate - mdate;\n                    var hourDiff = Math.floor(diffDate / 1000 / 60 / 60);\n                    console.debug(diffDate, hourDiff);\n                    if ( hourDiff <= 24 && hourDiff > 12 ){\n                        console.debug(diffDate, hourDiff);\n\n                    }\n                    if ( hourDiff <= 12 && hourDiff > 8 ){\n                        // console.debug(diffDate, hourDiff);\n                        // console.debug(hourDiff,\"Yellow Case: \" + casess);\n                        parent.find('div').css('font', 'italic 12px/18px Arial, Helvetica, sans-serif');\n                        // $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#EBC299');\n                    }\n                    if ( hourDiff <= 8 && hourDiff > 6 ){\n                        // console.debug(diffDate, hourDiff);\n                        // console.debug(hourDiff,\"Orange Case: \" + casess);\n                        parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {\n                            parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');\n                            $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#FF9933');\n                        });\n\n                    }\n                    if ( hourDiff <= 6 && hourDiff > 3 ){\n                        // console.debug(diffDate, hourDiff);\n                    }\n                    if ( hourDiff <= 3 ){\n                        var casess = $(this).parent(\"td\").parent(\"tr\").find('.x-grid3-col-CASES_CASE_NUMBER').find('a').html();\n                        // console.debug(hourDiff,\"Red Case: \" + casess);\n                        parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {\n                            parent.find('div').css('font', 'italic bold 12px/18px Arial, Helvetica, sans-serif');\n                            $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#FF3300');\n                        });\n                    }\n                });\n            } else {\n                alert('Missing \"PRT Target\" column from case view');\n\n            }\n\n    console.info('select.title does not contain \"Open Cases\"', $('.x-grid3-col-00N1300000BQsmE').html());\n\n\n} else {\n        if ($('.x-grid3-col-00N1300000BQsmE').length){\n                $('.x-grid3-col-00N1300000BQsmE').each(function() {\n\n                    var parent = $(this).parent(\"td\").parent(\"tr\").find('td');\n                    var mdate = new Date();\n                    var cdate = new Date($(this).html());\n                    // console.debug(cdate.toDateString());\n                    var diffDate = cdate - mdate;\n                    var hourDiff = Math.floor(diffDate / 1000 / 60 / 60);\n                    console.debug(diffDate, hourDiff);\n                    if ($(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").find(\"div:contains('Waiting on Case Owner')\").length){\n                        hourDiff = Math.floor(hourDiff + 72);\n                    }\n                    if ( hourDiff <= 24 && hourDiff > 12 ){\n                        console.debug(diffDate, hourDiff);\n\n                    }\n                    if ( hourDiff <= 12 && hourDiff > 8 ){\n                        // console.debug(diffDate, hourDiff);\n                        // console.debug(hourDiff,\"Yellow Case: \" + casess);\n                        // parent.find('div').css('font', 'italic 12px/18px Arial, Helvetica, sans-serif');\n                        // $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#EBC299');\n                        $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-low');\n                    }\n                    if ( hourDiff <= 8 && hourDiff > 6 ){\n                        // console.debug(diffDate, hourDiff);\n                        // console.debug(hourDiff,\"Orange Case: \" + casess);\n                        parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {\n                            // parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');\n                            // $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#FF9933');\n                            $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-high');\n                        });\n\n                    }\n                    if ( hourDiff <= 6 && hourDiff > 3 ){\n                        // console.debug(diffDate, hourDiff);\n                    }\n                    if ( hourDiff <= 3 ){\n                        var casess = $(this).parent(\"td\").parent(\"tr\").find('.x-grid3-col-CASES_CASE_NUMBER').find('a').html();\n                        // console.debug(hourDiff,\"Red Case: \" + casess);\n                        parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {\n                            // parent.find('div').css('font', 'italic bold 12px/18px Arial, Helvetica, sans-serif');\n                            // $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#FF3300');\n                            if ($(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").find(\"div:contains('Waiting on Case Owner')\").length){\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-low');\n                            } else {\n                                $(this).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-prt-urgent');\n                            }\n                        });\n                    }\n                });\n            } \n}\n\n}\n\n\nfunction color() {\n    console.info('color()','---Checking Case Status---');\n    var replace_pipe = $('.x-grid3-col-ACTION_COLUMN').html().replace(/\\|/, '');\n    $('.x-grid3-col-ACTION_COLUMN').html(replace_pipe);\n    if(/Open Cases/.test($('select.title option:selected').html())){\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Not Reviewed')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-nr');\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Under Review')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-ur');\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Escalated to PSE')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-esc-pse');\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Escalated to Eng')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-esc-eng');\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Waiting on Customer')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-waiting-cust');\n        $(\".x-grid3-row-table\").find((\"div:contains('Open: Patch Delivered')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-tse-patch-delivered');\n            // $('.x-grid3-col-00N30000004r0fO').css('visibility','hidden');\n\n        } else {\n            // console.info('select.title does not contain \"Open Cases\"');\n            // x-grid3-col-00N30000004r0fn\n            // $(\".x-grid3-row-table\").find((\"div:contains('Escalated')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#9beeff');\n            // $(\".x-grid3-row-table\").find((\"div:contains('Escalated to Engineering')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#f1ff9b');\n            $(\".x-grid3-row-table\").find((\"div:contains('Escalated')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-pse-escalated');\n            $(\".x-grid3-row-table\").find((\"div:contains('Escalated to Engineering')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-pse-esc-eng');\n            $(\".x-grid3-row-table\").find((\"div:contains('Waiting on Case Owner')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").addClass('jh-pse-waiting');\n                // $(\".x-grid3-row-table\").find((\"div:contains('Escalated to')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#f1ff9b');\n                // $(\".x-grid3-row-table\").find((\"div:contains('Waiting on Customer')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#9bffc8');\n                // $(\".x-grid3-row-table\").find((\"div:contains('Patch Delivered')\")).parent(\"td\").parent(\"tr\").parent(\"tbody\").css('background', '#CC6600');\n            }\n\n\n        }\n\n        // $('.linkBar').addClass('jh-hidden');\n        // $('.chatterFollowUnfollowAction').addClass('jh-hidden');\n        // $('.x-grid3-hd-row').addClass('jh-background');\n        // // $('.linkBar').addClass('jh-background');\n        // $('.bottomNav').addClass('jh-background');\n        // $('#ext-gen10').addClass('jh-background');\n        // $('.zen-active').toggleClass('jh-active');\n        // $('.rolodex').insertAfter('div.filterLinks').toggleClass('jh-hidden');\n        // $('#tabBar').append('<li id=\"mysearch\"></li>');\n        // $('#phSearchForm').appendTo('#mysearch');\n        // $('#phSearchForm').addClass('jh-search');\n        // $('#phSearchInput').attr({autocomplete: 'true'});\n        // $('#searchButtonContainer').toggleClass('jh-hidden');\n        // $('*','#phSearchContainer').css('background', '0 !important');\n        setTimeout(function() {\n            if (window.location.href.indexOf(\"https://na19.salesforce.com/500\") > -1 ) {\n                if ($('.x-grid3-row-table').length){\n                    color();\n                    colorAged();}\n                } else {\n                    setTimeout();\n                }\n            }, 500);\n\n    // $(window).resize(function() {\n    //     if ($('.x-grid3-row-table').length){\n    //         setTimeout(function() {\n    //             color();\n    //             colorAged();\n    //         }, 1000);        \n    //     }\n    // });\n\n$(window).resize(function() {\n    setTimeout(function() {\n        if (window.location.href.indexOf(\"https://na19.salesforce.com/500\") > -1 ) {\n            if ($('.x-grid3-row-table').length){\n                color();\n                colorAged();}\n            } else {\n                setTimeout();\n            }\n        }, 200);});\n\n// console.debug(mArray.toString(),n);\n\nvar open = window.XMLHttpRequest.prototype.open,\nsend = window.XMLHttpRequest.prototype.send,\nonReadyStateChange;\n\nfunction openReplacement(method, url, async, user, password) {\n    var syncMode = async !== false ? 'async' : 'sync';\n    console.warn('Preparing ' + syncMode + ' HTTP request : ' + method + ' ' + url);\n    if ($('.jh-refresh').length < 1) {\n        $('.refreshListButton').toggleClass('jh-hidden');\n        $('.refreshListButton').clone().attr('id',id += 1).addClass('jh-refresh').insertAfter('div.filterLinks');\n    };\n        // setTimeout(function () {\n        // if (debug) {console.debug('openReplacement()','Attempting to color objects!');}\n        // $('#00B13000009tzTL_refresh').hide();\n        //  color();\n        //  colorAged();\n        //  getCases();\n     // }, 500);\n    if (method == \"GET\"){\n        if (debug) {console.debug('openReplacement()','Case Refresh Detected! Attempting to color found objects!');}\n        setTimeout(function () {\n        $('#00B13000009tzTL_refresh').hide();\n         color();\n         colorAged();\n         getCases();\n     }, 500);\n    }\n    \n    \n    return open.apply(this, arguments);\n}\n\nfunction sendReplacement(data) {\n    console.warn('Sending HTTP request data : ', data);\n\n    if (this.onreadystatechange) {\n        this._onreadystatechange = this.onreadystatechange;\n    }\n    this.onreadystatechange = onReadyStateChangeReplacement;\n\n    return send.apply(this, arguments);\n}\n\nfunction onReadyStateChangeReplacement() {\n    console.warn('HTTP request ready state changed : ' + this.readyState);\n    if (this.readyState == 4){\n        if (debug) {console.debug('openReplacement()','Case Refresh Detected! Attempting to color found objects!');}\n        setTimeout(function () {\n            $('#00B13000009tzTL_refresh').hide();\n            color();\n            colorAged();\n            getCases();\n        }, 500);\n    }\n    if (this._onreadystatechange) {\n        return this._onreadystatechange.apply(this, arguments);        \n    }\n}\n\nwindow.XMLHttpRequest.prototype.open = openReplacement;\nwindow.XMLHttpRequest.prototype.send = sendReplacement;\n\n});",
+			"file": "UserScripts/SF_color_coding.user.js",
+			"file_size": 16977,
+			"file_write_time": 130754855771845805,
+			"settings":
+			{
+				"buffer_size": 16649,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "UserScripts/Resources/css/mycss.css",
+			"settings":
+			{
+				"buffer_size": 1697,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 196.0,
+		"last_filter": "save",
+		"selected_items":
+		[
+			[
+				"save",
+				"Project: Save As"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#ff0000",
+			"#FF9933",
+			"#FFCC66",
+			"#EBC299",
+			"#e2e6e7",
+			"#d7ccc8"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "UserScripts/SF_color_coding.user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								786,
+								786
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "UserScripts/Resources/css/mycss.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1697,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								779
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 525.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sf_tools.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
