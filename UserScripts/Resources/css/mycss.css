@@ -63,27 +63,27 @@
 /*PRT Colors*/
 
 .jh-prt-low {
-	background-color: #EBC299;
-	border-color: #EBC299;
+	background-color: rgba(235, 194, 153, 0.3);
+	border-color: rgba(235, 194, 153, 0.3);
 }
 
 .jh-prt-med {
-	background-color: #FFCC66;
-	border-color: #FFCC66;
+	background-color: rgba(255, 204, 102, 0.3);
+	border-color: rgba(255, 204, 102, 0.3);
 	font: 'italic 12px/18px Arial, Helvetica, sans-serif';
 	/*parent.find('div').css('font', 'italic 12px/18px Arial, Helvetica, sans-serif');*/
 }
 
 .jh-prt-high {
-	background-color: #FF9933;
-	border-color: #FF9933;
+	background-color: rgba(255, 153, 51, 0.3);
+	border-color: rgba(255, 153, 51, 0.3);
 	font: 'bold 12px/18px Arial, Helvetica, sans-serif';
 	/*parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');*/
 }
 
 .jh-prt-urgent, .jh-prt-urgent div, .jh-prt-urgent a, .jh-prt-urgent span {
-    background-color: #ff0000;
-    border-color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.3);
     font: 'italic bold 12px/18px Arial, Helvetica, sans-serif';
     font-weight: heavy;
     color: #ffffff;
