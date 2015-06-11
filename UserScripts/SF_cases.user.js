@@ -234,6 +234,7 @@ $(document).ready(function() {
 
 		$('body').on('keydown', function(e) {	
 	    	if(e.altKey && e.keyCode == 83){
+	    		e.preventDefault();
 	    		var jh_text = $('.jh-textarea').val();
 	    		hideunibar();
 	    		console.log("detected alt+s");
