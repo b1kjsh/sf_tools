@@ -59,6 +59,7 @@ $(document).ready(function () {
                             // console.log($(this).html());
                             if (parseFloat($(this).html()) == parseFloat(1) && $(this).parent("td").parent("tr").find('.x-grid3-col-CASES_STATUS:contains("Waiting")').length > 0){
                                 $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-low');
+
                             }
                             if (parseFloat($(this).html()) > parseFloat (1.00) ){
                                 $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-med');
@@ -149,6 +150,14 @@ function checkPRT() {
                         console.debug(diffDate, hourDiff);
 
                     }
+
+                    var test = 0;
+                    if (isNaN(hourDiff)){
+                        $(this).parent("td").parent("tr").parent("tbody").parent("table").parent("div").attr('data-ptr', 0);
+                    } else {
+                        $(this).parent("td").parent("tr").parent("tbody").parent("table").parent("div").attr('data-ptr', hourDiff);
+                    }
+
                     if ( hourDiff <= 12 && hourDiff > 8 ){
                         // console.debug(diffDate, hourDiff);
                         // console.debug(hourDiff,"Yellow Case: " + casess);
@@ -162,7 +171,7 @@ function checkPRT() {
                         parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
                             // parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');
                             // $(this).parent("td").parent("tr").parent("tbody").css('background', '#FF9933');
-                            $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-high');
+                            $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-high');                            
                         });
 
                     }
@@ -182,6 +191,7 @@ function checkPRT() {
                             }
                         });
                     }
+
                 });
             } 
 }
@@ -236,7 +246,9 @@ function color() {
             if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
                 if ($('.x-grid3-row-table').length){
                     color();
-                    colorAged();}
+                    colorAged();
+                    makeSortable();
+                }
                 } else {
                     setTimeout();
                 }
@@ -256,7 +268,8 @@ $(window).resize(function() {
         if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1 ) {
             if ($('.x-grid3-row-table').length){
                 color();
-                colorAged();}
+                colorAged();
+            makeSortable();}
             } else {
                 setTimeout();
             }
@@ -289,6 +302,7 @@ function openReplacement(method, url, async, user, password) {
          color();
          colorAged();
          getCases();
+         makeSortable();
      }, 500);
     }
     
@@ -316,6 +330,7 @@ function onReadyStateChangeReplacement() {
             color();
             colorAged();
             getCases();
+            makeSortable();
         }, 500);
     }
     if (this._onreadystatechange) {
@@ -325,5 +340,14 @@ function onReadyStateChangeReplacement() {
 
 window.XMLHttpRequest.prototype.open = openReplacement;
 window.XMLHttpRequest.prototype.send = sendReplacement;
+
+function makeSortable() {
+    $('.x-grid3-body').sort(function (a, b) {
+        return $(a).find('.x-grid3-row').data('ptr') - $(b).find('.x-grid3-row').data('ptr');
+    }).each(function (_, container) {
+        $(container).parent().append(container);
+        console.log('sorting');
+    })
+}
 
 });
