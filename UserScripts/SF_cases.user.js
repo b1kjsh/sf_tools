@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 	var tfs = $("#00N30000004r0fX_ileinner").text();
 	if (tfs.match(/[0-9]{6}/))
-		$("#00N30000004r0fX_ileinner").wrapInner('<a href="http://slc-tfs3.landesk.com:8080/tfs/LD/SSM/Global%20Services/_workitems#_a=edit&id=' + tfs + '"></a>');
+		$("#00N30000004r0fX_ileinner").wrapInner('<a href="http://tfs.landesk.com:8080/tfs/LDEngineering/Master/_workitems#_a=edit&id=' + tfs + '"></a>');
 
 	function init() {
 		$('body').append('<div id="myEditBox" />');
