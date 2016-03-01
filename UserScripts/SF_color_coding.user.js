@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.50
+// @version    1.60
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_setValue
@@ -57,7 +57,7 @@ $(document).ready(function() {
                         'padding-right': '10px'
                     })
                     .append($('<label></label>')
-                        
+
                         .append($('<input></input>').attr({
                                 'type': 'checkbox',
                                 'checked': function() {
@@ -177,6 +177,21 @@ $(document).ready(function() {
     function checkPRT() {
         console.info('checkPRT()', '---Checking Case PRT---');
         // if($('select.title').match(/Open Cases/)){
+        var urgent = 3,
+            high = 6,
+            med = 8,
+            low = 12,
+            base = 24;
+
+        if (SETTINGS['Averages']) {
+            base = $('.x-grid3-col-00N30000004r0gN').length * parseFloat(5);
+            low = parseInt(base / 2);
+            med = parseInt(low / 2);
+            high = parseInt(med / 2);
+            urgent = parseInt(high / 2);
+        }
+
+        console.log(base, low, med, high, urgent);
         if (/Open Cases/.test($('select.title option:selected').html())) {
             if ($('.x-grid3-col-00N30000004r0gN').length) {
                 $('.x-grid3-col-00N30000004r0gN').each(function() {
@@ -184,38 +199,43 @@ $(document).ready(function() {
                     var parent = $(this).parent("td").parent("tr").find('td');
                     var mdate = new Date();
                     var cdate = new Date($(this).html());
-                    console.debug(cdate.toDateString());
+                    // console.debug(cdate.toDateString());
                     var diffDate = cdate - mdate;
                     var hourDiff = Math.floor(diffDate / 1000 / 60 / 60);
-                    console.debug(diffDate, hourDiff);
-                    if (hourDiff <= 24 && hourDiff > 12) {
-                        console.debug(diffDate, hourDiff);
+
+                    // console.debug(diffDate, hourDiff);
+                    if (hourDiff <= base && hourDiff > low) {
+                        // console.debug(diffDate, hourDiff);
 
                     }
-                    if (hourDiff <= 12 && hourDiff > 8) {
+                    if (hourDiff <= low && hourDiff > med) {
                         // console.debug(diffDate, hourDiff);
                         // console.debug(hourDiff,"Yellow Case: " + casess);
                         parent.find('div').css('font', 'italic 12px/18px Arial, Helvetica, sans-serif');
-                        // $(this).parent("td").parent("tr").parent("tbody").css('background', '#EBC299');
+                        $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-low');
                     }
-                    if (hourDiff <= 8 && hourDiff > 6) {
+                    if (hourDiff <= med && hourDiff > high) {
                         // console.debug(diffDate, hourDiff);
                         // console.debug(hourDiff,"Orange Case: " + casess);
                         parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
                             parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');
-                            $(this).parent("td").parent("tr").parent("tbody").css('background', '#FF9933');
+                            $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-med');
                         });
 
                     }
-                    if (hourDiff <= 6 && hourDiff > 3) {
+                    if (hourDiff <= high && hourDiff > urgent) {
                         // console.debug(diffDate, hourDiff);
+                        parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
+                            parent.find('div').css('font', 'bold 12px/18px Arial, Helvetica, sans-serif');
+                            $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-high');
+                        });
                     }
-                    if (hourDiff <= 3) {
-                        var casess = $(this).parent("td").parent("tr").find('.x-grid3-col-CASES_CASE_NUMBER').find('a').html();
-                        // console.debug(hourDiff,"Red Case: " + casess);
+                    if (hourDiff <= urgent) {
+                        // var casess = $(this).parent("td").parent("tr").find('.x-grid3-col-CASES_CASE_NUMBER').find('a').html();
+                        // // console.debug(hourDiff,"Red Case: " + casess);
                         parent.find('.x-grid3-col-CASES_CASE_NUMBER').each(function() {
                             parent.find('div').css('font', 'italic bold 12px/18px Arial, Helvetica, sans-serif');
-                            $(this).parent("td").parent("tr").parent("tbody").css('background', '#FF3300');
+                            $(this).parent("td").parent("tr").parent("tbody").addClass('jh-prt-urgent');
                         });
                     }
                 });
@@ -355,6 +375,10 @@ $(document).ready(function() {
                         color();
                     if (SETTINGS['Age'])
                         colorAged();
+                    if (SETTINGS['PRT'])
+                        checkPRT();
+                    if (SETTINGS['Customer'])
+                        colorWaiting();
                     makeSortable();
                 }
             } else {
