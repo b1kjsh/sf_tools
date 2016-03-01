@@ -28,23 +28,120 @@ console.log("---" + GM_info.script.name + " loaded in window version " + GM_info
 $(document).ready(function() {
     // $('.x-grid3-col-ACTION_COLUMN').
     var SETTINGS = [];
-    var items = ["Status", "PRT", "Age", "Customer", "Averages"];
+    var items = ["Status", "PRT", "Age", "Customer", "Averages", "Blind"];
+    var itemsDesc = ["Color by Case Status", "Color by PRT", "Color by Case Age", "Highlight Waiting", "Strict Mode Disabled", "Color Blind Mode"]
     var mArray = [];
     var jh_CSS = GM_getResourceText("jh_CSS");
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
     GM_addStyle(jh_CSS);
     // GM_addStyle (jh_CSS_layout); 
-    var settingsValues = [];
-    $.each(items, function(index, val) {
-        settingsValues[val] = GM_getValue(val);
-        SETTINGS[val] = GM_getValue(val);
-        // console.log(settingsValues);
-        if (settingsValues[val] === undefined) {
-            GM_setValue(val, true);
-        }
-    });
 
-    console.log(SETTINGS);
+    function initSettings() {
+        var settingsValues = [];
+        SETTINGS = [];
+        $.each(items, function(index, val) {
+            settingsValues[val] = GM_getValue(val);
+            SETTINGS[val] = GM_getValue(val);
+            // console.log(settingsValues);
+            if (settingsValues[val] === undefined) {
+                GM_setValue(val, true);
+            }
+        });
+
+        console.log(SETTINGS);
+
+
+    }
+
+    function applyColorBlindness() {
+        console.log('colorblind', $("[class^='jh-tse'],[class^='jh-prt']"));
+        $("[class^='jh-tse'],[class^='jh-prt']").each(function(index, el) {
+            $(this).addClass('cb0');
+        });
+    }
+
+    function genColorSettings(object) {
+        object.append(function() {
+            var a = $(this);
+            var colors = new Array();
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-nr').text('Not Reviewed'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-ur').text('Under Review'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-waiting-cust').text('Waiting On Customer'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-patch-delivered').text('Patch Delivered'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-esc-pse').text('Escalated to PSE'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-tse-esc-eng').text('Escalated to ENG'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-prt-low').text('Low PRT Priority'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-prt-med').text('Medium PRT Priority'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-prt-high').text('High PRT Priority'));
+            colors.push($('<label></label>').css({
+                display: 'block',
+                'text-align': 'center',
+                'white-space': 'nowrap',
+                margin: '5px',
+                padding: '5px'
+            }).addClass('jh-prt-urgent').text('Urgent PRT Priority'));
+
+            $.each(colors, function(index, val) {
+                a.append(val);
+            });
+            if (SETTINGS['Blind'])
+                applyColorBlindness();
+        });
+    }
 
     function genSettings(object) {
         object.append(function() {
@@ -54,16 +151,18 @@ $(document).ready(function() {
                         'list-style': 'none',
                         'padding-top': '10px',
                         'padding-left': '10px',
-                        'padding-right': '10px'
+                        'padding-right': '10px',
+                        'padding-bottom': '2px'
                     })
                     .append($('<label></label>')
-
+                        .css({ 'font-size': 'small', 'font-weight': '600' })
                         .append($('<input></input>').attr({
                                 'type': 'checkbox',
                                 'checked': function() {
-                                    return settingsValues[val];
+                                    return SETTINGS[val];
                                 }
                             })
+                            .css('margin-right', '10px')
                             .addClass('jh_settings_' + val)
                             .change(function(event) {
                                 var test = $('.jh_settings_' + val).is(':checked');
@@ -73,18 +172,33 @@ $(document).ready(function() {
                                 } else {
                                     GM_setValue(val, test);
                                 }
+                                $('.jh-refresh').click();
                             }))
-                        .append(val)
+                        .append(itemsDesc[index])
                     ))
             });
+            a.append(function() {
+                $(this).append($('<div></div>')
+                    .css({
+                        display: 'inline-block',
+                        '*display': 'inline',
+                        width: '100%'
+                    })
+                    .append(function() {
+                        var a = $(this);
+                        genColorSettings(a);
+                    })
+                );
 
+            });
         })
     }
 
     function init(argument) {
 
-        $('.topNavTab').append($('<div></div>')
-            .append($('<a></a>').text('Color Settings').addClass('jh_settings_button')
+        $('.topNavTab').append($('<a></a>')
+            .css('color', 'black')
+            .append($('<img src="/img/icon/custom51_100/gears16.png"></img>').addClass('jh_settings_button')
                 .click(function(event) {
                     if ($('.jh_settings').length <= 0) {
                         $('.jh_settings_button').after($('<div></div>').addClass('jh_settings')
@@ -92,9 +206,8 @@ $(document).ready(function() {
                                 'z-index': '10',
                                 'position': 'absolute',
                                 'background': 'white',
-                                'width': '200px',
-                                'border': '2px solid #EAEAEA',
-                                'padding-bottom': '10px'
+                                'width': '210px',
+                                'border': '2px solid #EAEAEA'
                             }));
                         genSettings($('.jh_settings'));
                     } else {
@@ -311,9 +424,11 @@ $(document).ready(function() {
     }
 
     function colorWaiting() {
-        $.each($('.jh-tse-waiting-cust'), function(index, val) {
-            if (parseFloat($(this).find('.x-grid3-td-00N30000004r0gj').find('div').html()) > parseFloat(1.50))
-                $(this).addClass('jh-prt-low');
+        $.each($('.x-grid3-td-00N30000004r0gj'), function(index, val) {
+            console.log('here');
+            if (parseFloat($(this).find('div').html()) > parseFloat(1.50) && $(this).parent("tr").find('.x-grid3-col-CASES_STATUS:contains("Waiting")').length > 0) {
+                $(this).parent("tr").parent("tbody").addClass('jh-prt-low');
+            }
         });
     }
 
@@ -351,6 +466,7 @@ $(document).ready(function() {
         if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1) {
             if ($('.x-grid3-row-table').length) {
                 init();
+                initSettings();
                 if (SETTINGS['Status'])
                     color();
                 if (SETTINGS['Age'])
@@ -359,6 +475,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
+                if (SETTINGS['Blind'])
+                    applyColorBlindness();
 
                 makeSortable();
             }
@@ -371,6 +489,7 @@ $(document).ready(function() {
         setTimeout(function() {
             if (window.location.href.indexOf("https://na19.salesforce.com/500") > -1) {
                 if ($('.x-grid3-row-table').length) {
+                    initSettings();
                     if (SETTINGS['Status'])
                         color();
                     if (SETTINGS['Age'])
@@ -379,6 +498,8 @@ $(document).ready(function() {
                         checkPRT();
                     if (SETTINGS['Customer'])
                         colorWaiting();
+                    if (SETTINGS['Blind'])
+                        applyColorBlindness();
                     makeSortable();
                 }
             } else {
@@ -407,10 +528,11 @@ $(document).ready(function() {
         //  colorAged();
         //  getCases();
         // }, 500);
-        if (method == "GET") {
+        if (method == "GET" || method == "POST") {
             if (debug) { console.debug('openReplacement()', 'Case Refresh Detected! Attempting to color found objects!'); }
             setTimeout(function() {
                 $('#00B13000009tzTL_refresh').hide();
+                initSettings();
                 if (SETTINGS['Status'])
                     color();
                 if (SETTINGS['Age'])
@@ -419,6 +541,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
+                if (SETTINGS['Blind'])
+                    applyColorBlindness();
                 getCases();
                 makeSortable();
             }, 500);
@@ -445,6 +569,7 @@ $(document).ready(function() {
             if (debug) { console.debug('openReplacement()', 'Case Refresh Detected! Attempting to color found objects!'); }
             setTimeout(function() {
                 $('#00B13000009tzTL_refresh').hide();
+                initSettings();
                 if (SETTINGS['Status'])
                     color();
                 if (SETTINGS['Age'])
@@ -453,6 +578,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
+                if (SETTINGS['Blind'])
+                    applyColorBlindness();
                 getCases();
                 makeSortable();
             }, 500);
