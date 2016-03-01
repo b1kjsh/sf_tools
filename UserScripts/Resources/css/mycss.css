@@ -31,7 +31,7 @@
 }
 
 .jh-pse-esc-eng.cb0 {
-	background-color: #bf812d!important;
+	background-color: #bf812d !important;
 	border-color: white;
 }
 .jh-pse-esc-eng {
@@ -42,7 +42,7 @@
 /*TSE colors*/
 
 .jh-tse-nr.cb0 {
-	background-color: #dfc27d !important;
+	background-color: rgb(86, 180, 283) !important;
 
 }
 .jh-tse-nr {
@@ -51,7 +51,7 @@
 }
 
 .jh-tse-ur.cb0 {
-	background-color: #f6e8c3 !important;
+	background-color: rgb(0, 158, 115) !important;
 }
 .jh-tse-ur {
 	background-color: #9beeff;
@@ -59,7 +59,7 @@
 }
 
 .jh-tse-esc-pse.cb0 {
-	background-color: #c7eae5 !important;
+	background-color: rgb(0, 114, 178) !important;
 }
 .jh-tse-esc-pse {
 	background-color: #f1ff9b;
@@ -67,7 +67,7 @@
 }
 
 .jh-tse-esc-eng.cb0 {
-	background-color: #c7eae5 !important;
+	background-color: rgb(0, 114, 178) !important;
 }
 .jh-tse-esc-eng {
 	background-color: #f1ff9b;
@@ -75,15 +75,16 @@
 }
 
 .jh-tse-waiting-cust.cb0 {
-	background-color: #80cdc1 !important;
+	background-color: rgb(240, 228, 66) !important;
 }
 .jh-tse-waiting-cust {
 	background-color: #e2e6e7;
 	border-color: #e2e6e7;
 }
 
-.jh-tse-patch-delivered.cb0 {
-	background-color: #35978f !important;
+.jh-tse-patch-delivered.cb0, .jh-prt-high.cb0 div, .jh-prt-high.cb0 a, .jh-prt-high.cb0 span  {
+	background-color: rgb(230, 159, 0) !important;
+	color: white;
 }
 .jh-tse-patch-delivered {
 	background-color: #CC6600;	
@@ -93,7 +94,7 @@
 /*PRT Colors*/
 
 .jh-prt-low.cb0 {
-	background-color: #80cdc1 !important;
+	background-color: rgb(240, 228, 66) !important;
 }
 .jh-prt-low {
 	background-color: #EBC299;
@@ -101,7 +102,7 @@
 }
 
 .jh-prt-med.cb0 {
-	background-color: #35978f !important;
+	background-color: rgb(230, 159, 0) !important;
 }
 .jh-prt-med {
 	background-color: #FFCC66;
@@ -110,7 +111,7 @@
 }
 
 .jh-prt-high.cb0, .jh-prt-high.cb0 div, .jh-prt-high.cb0 a, .jh-prt-high.cb0 span  {
-	background-color: #01665e !important;
+	background-color: rgb(204, 121, 167) !important;
 	color: white;
 	font-weight: 600;
 }
@@ -121,7 +122,7 @@
 }
 
 .jh-prt-urgent.cb0, .jh-prt-urgent.cb0 div, .jh-prt-urgent.cb0 a, .jh-prt-urgent.cb0 span {
-	background-color: #003c30 !important;
+	background-color: rgb(204,121,167) !important;
 	font: 'italic bold 12px/18px Arial, Helvetica, sans-serif';
     font-weight: heavy;
     color: #ffffff;
