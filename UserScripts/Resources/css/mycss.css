@@ -109,7 +109,7 @@
 	font: 'italic 12px/18px Arial, Helvetica, sans-serif';
 }
 
-.jh-prt-high.cb0 {
+.jh-prt-high.cb0, .jh-prt-high.cb0 div, .jh-prt-high.cb0 a, .jh-prt-high.cb0 span  {
 	background-color: #01665e !important;
 	color: white;
 	font-weight: 600;

@@ -46,6 +46,8 @@ $(document).ready(function() {
             if (settingsValues[val] === undefined) {
                 GM_setValue(val, true);
             }
+            if (settingsValues[val] === undefined && val == 'Blind')
+                GM_setValue(val, false);
         });
 
         console.log(SETTINGS);
@@ -172,6 +174,8 @@ $(document).ready(function() {
                                 } else {
                                     GM_setValue(val, test);
                                 }
+
+
                                 $('.jh-refresh').click();
                             }))
                         .append(itemsDesc[index])
@@ -193,7 +197,7 @@ $(document).ready(function() {
             });
         })
         if (SETTINGS['Blind'])
-                applyColorBlindness();
+            applyColorBlindness();
     }
 
     function init(argument) {
