@@ -196,8 +196,11 @@ $(document).ready(function() {
 
             });
         })
-        if (SETTINGS['Blind'])
+        if (SETTINGS['Blind']){
             applyColorBlindness();
+        } else {
+            // TODO: Remove Color Blindness
+        }
     }
 
     function init(argument) {
