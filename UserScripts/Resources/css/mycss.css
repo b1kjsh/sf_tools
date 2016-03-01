@@ -111,6 +111,8 @@
 
 .jh-prt-high.cb0 {
 	background-color: #01665e !important;
+	color: white;
+	font-weight: 600;
 }
 .jh-prt-high {
 	background-color: #FF9933;
