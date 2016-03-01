@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_webex_scheduling
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.23
+// @version    0.24
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_xmlhttpRequest 
@@ -12,6 +12,7 @@
 // @description  Days Since Updated and the Case Status column is required for this script.
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js
 // @downloadURL   https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_webex_sched.user.js
+// @resource CSS https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/font-awesome/css/font-awesome.css
 // @copyright  2012+, You
 // ==/UserScript==
 
@@ -108,10 +109,10 @@ $(document).ready(function() {
         return finalURL;
       }
       $('table.detailList').first().before('<div id="mContainerDay">' + btnSetDay('Monday') + btnSetDay('Tuesday') + btnSetDay('Wednesday') + btnSetDay('Thursday') + btnSetDay('Friday') + '</div>');
-      $('head').append('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">');
-      $('head').append('<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">');
-      $('head').append('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">');
-      $('head').append('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>');
+      // $('head').append('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">');
+      // $('head').append('<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">');
+      // $('head').append('<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css" rel="stylesheet">');
+      // $('head').append('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>');
 
       $('.btn[name=save]').first().before('<input class="btn" type="button" id="create"/>');
       $('.pbTitle').css('width','18%');
@@ -133,76 +134,75 @@ $(document).ready(function() {
     // $("div.linkElements").append('<a id="settings"><i class="fa fa-bars"></i>User Settings</a><div id="settingsWrapper" class="input-group" style="display: none;"><span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span><input class="form-control" type="text" placeholder="Email address"><div class="userSettingsListItem">Username:</div><input id="username" value="'+ GM_getValue('username') + '"></input>    <div class="userSettingsListItem">Password:</div>    <input id="password" value="'+ GM_getValue('password') + '"></input>    <div class="userSettingsListItem">Phone:</div>    <input id="phone" value="'+ GM_getValue('phone') + '"></input>        <div class="userSettingsListItem">Email:</div>    <input id="email" value="'+ GM_getValue('email') + '"></input>    <div class="userSettingsListItem">Product:</div>    <input id="product" value="'+ GM_getValue('product') + '"></input><br> <input class="btn" type=button  value="save" id="usersettingsSave" /> <input id="usersettingsClose" type=button class="btn" value="close" /></div>');
     // $("div.linkElements").append('<div class="menuButtonButton"><span class="menuBettonLabel" id="userNavLabel">settings</span><div class="userNav-buttonArrow mbrButtonArrow" id="userNav-arrow"></div></div>');
     // $("div.linkElements").append('<div class="myUserSettings"><a id="settings" class="navLinks">Hello</a></div>');
-    $("div.linkElements").append('<a id="settings"><i class="fa fa-bars"></i></a>');
+    
 
-    var q = [GM_getValue('username'),GM_getValue('password'),GM_getValue('email'),GM_getValue('phone'),GM_getValue('product')];
-    if (GM_getValue('username').length <= 0)
-      q[0] = "username";
-    if (GM_getValue('password').length <= 0)
-      q[1] = "password";
-    if (GM_getValue('email').length <= 0)
-      q[2] = "email";
-    if (GM_getValue('phone').length <= 0)
-      q[3] = "phone";
-    if (GM_getValue('product').length <= 0)
-      q[4] = "product";
+    var uname = GM_getValue('username');
+  var upass = GM_getValue('password');
+  var umail = GM_getValue('email');
+  var uphon = GM_getValue('phone');
+  var uprod = GM_getValue('product');
 
-    var settingPageHtml = '<div class="input-group margin-sm">' +
-    '<span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>' +
-    '<input id="username" class="form-control" type="text" placeholder="'+q[0]+'">' +
-    '</div>' +
-    '<div class="input-group margin-sm">' +
-    '<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>' +
-    '<input id="password" class="form-control" type="text" placeholder="'+q[1]+'">' +
-    '</div>' +
-    '<div class="input-group margin-sm">' +
-    '<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>' +
-    '<input id="email" class="form-control" type="text" placeholder="'+q[2]+'">' +
-    '</div>' +
-    '<div class="input-group margin-sm">' +
-    '<span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>' +
-    '<input id="phone" class="form-control" type="text" placeholder="'+q[3]+'">' +
-    '</div>' +
-    '<div class="input-group margin-sm">' +
-    '<span class="input-group-addon"><i class="fa fa-cog fa-fw"></i></span>' +
-    '<input id="product" class="form-control" type="text" placeholder="'+q[4]+'">' +
-    '</div>' +
-    '<button type="button" id="usersettingsSave" class="btn-sm btn-primary center">Save</button>' +
-    '<button type="button" id="usersettingsClose" class="btn-sm btn-default center">Close</button>' +
-                      // '<div class="input-group margin-bottom-sm">' +
-                      //   '<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>' +
-                      //   '<input class="form-control" type="text" placeholder="Email address">' +
-                      // '</div>' +
-                      // '<div class="input-group">' +
-                      //   '<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>' +
-                      //   '<input class="form-control" type="password" placeholder="Password">' +
-                      '</div>';
+  var q = [GM_getValue('username'),GM_getValue('password'),GM_getValue('email'),GM_getValue('phone'),GM_getValue('product')];
+  if (uname == null)
+    q[0] = "username";
+  if (upass == null)
+    q[1] = "password";
+  if (umail == null)
+    q[2] = "email";
+  if (uphon == null)
+    q[3] = "phone";
+  if (uprod == null)
+    q[4] = "product";
 
-                      $("#settings").after('<div id="settingsWrapper" class="myUserSettings panel" style="display:none;">'+settingPageHtml+ '</div>');
-                      $('.myUserSettings').css('position','absolute');
-                      $('.myUserSettings').css('z-index','100');
-                      $('.myUserSettings').css('width','200px');
-                      $('.myUserSettings').css('width','200px');
-                      $('.myUserSettings').css('backgroundColor','#80CDE4');
-                      $('.margin-sm').css('margin','5px');
-                      $('.btn').addClass('btn-xs btn-info');
-      // $('.btn').removeClass('btn');
-      $('#usersettingsSave').click(function(){
-        GM_setValue('email', $('#email').val());
-        GM_setValue('phone', $('#phone').val());
-        GM_setValue('username',$('#username').val());
-        GM_setValue('password',$('#password').val());
-        GM_setValue('product',$('#product').val());
-        // $('#usersettingsSave').toggleClass('btn-primary', false);
-        // $('#usersettingsSave').toggleClass('active');
-        $("#settingsWrapper").hide();
-      });
-      $('#usersettingsClose').click(function(){$("#settingsWrapper").hide();});
-      $("#settings").click(function () {
-        $("#settingsWrapper").css(["position","relative"]);
-        $("#settingsWrapper").show();
-        
-      });
+  var settingPageHtml = '<div class="input-group margin-sm">' +
+  '<span class="input-group-addon">Username     ' +
+  '<input id="username" class="form-control" type="text" value="'+q[0]+'"></span>' +
+  '</div>' +
+  '<div class="input-group margin-sm">' +
+  '<span class="input-group-addon">Password     ' +
+  '<input id="password" class="form-control" type="password" value="'+q[1]+'"></span>' +
+  '</div>' +
+  '<div class="input-group margin-sm">' +
+  '<span class="input-group-addon">Email     ' +
+  '<input id="email" class="form-control" type="text" value="'+q[2]+'"></span>' +
+  '</div>' +
+  '<div class="input-group margin-sm">' +
+  '<span class="input-group-addon">Phone     ' +
+  '<input id="phone" class="form-control" type="text" value="'+q[3]+'"></span>' +
+  '</div>' +
+  '<div class="input-group margin-sm">' +
+  '<span class="input-group-addon">Product     ' +
+  '<input id="product" class="form-control" type="text" value="'+q[4]+'"></span>' +
+  '</div>' +
+  '<button type="button" id="usersettingsSave" class="btn-sm btn-primary center">Save</button>' +
+  '<button type="button" id="usersettingsClose" class="btn-sm btn-default center">Close</button>' +
+  '</div>';
+  $("div.linkElements").append('<a id="asdf">Settings</a>');
+  $("#asdf").after('<div id="settingsWrapper" class="myUserSettings panel" style="display:none;"> '+ settingPageHtml +' </div>');
+  $('.myUserSettings').css('position','absolute');
+  $('.myUserSettings').css('z-index','100');
+  $('.myUserSettings').css('width','auto');
+  $('.myUserSettings').css('backgroundColor','#80CDE4');
+  $('.margin-sm').css('margin','5px');
+  $('.btn').addClass('btn-xs btn-info');
+  // $('.btn').removeClass('btn');
+  $('#usersettingsSave').click(function(){
+    GM_setValue('email', $('#email').val());
+    GM_setValue('phone', $('#phone').val());
+    GM_setValue('username',$('#username').val());
+    GM_setValue('password',$('#password').val());
+    GM_setValue('product',$('#product').val());
+  // $('#usersettingsSave').toggleClass('btn-primary', false);
+  // $('#usersettingsSave').toggleClass('active');
+  $("#settingsWrapper").hide();
+  });
+  $('#usersettingsClose').click(function(){$("#settingsWrapper").hide();});
+  $("#asdf").click(function () {
+    console.log("OnClick Detected: Settings");
+    $("#settingsWrapper").css(["position","relative"]);
+    $("#settingsWrapper").show();
+
+  });
 
 
       function btnSetTime(value) {
@@ -295,7 +295,7 @@ $('#editPage').submit(function(){
 
 
 
-POSTLOGIN(loginURL,buildURL('LI'));
+// POSTLOGIN(loginURL,buildURL('LI'));
 
 
 
