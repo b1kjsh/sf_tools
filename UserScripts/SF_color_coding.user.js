@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.60
+// @version    1.80
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_setValue
