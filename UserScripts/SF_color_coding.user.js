@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    2.0
+// @version    2.1
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_setValue
@@ -56,11 +56,18 @@ $(document).ready(function() {
 
     }
 
-    function applyColorBlindness() {
-        console.log('colorblind', $("[class^='jh-tse'],[class^='jh-prt']"));
-        $("[class^='jh-tse'],[class^='jh-prt']").each(function(index, el) {
-            $(this).addClass('cb0');
-        });
+    function applyColorBlindness(isBlind) {
+        if (isBlind) {
+            console.log('colorblind: [' + isBlind + ']', $("[class^='jh-tse'],[class^='jh-prt'],[class^='jh-pse']"));
+            $("[class^='jh-tse'],[class^='jh-prt'],[class^='jh-pse']").each(function(index, el) {
+                $(this).addClass('cb0');
+            });
+        } else {
+            console.log('colorblind: [' + isBlind + ']', $("[class^='jh-tse'],[class^='jh-prt'],[class^='jh-pse']"));
+            $("[class^='jh-tse'],[class^='jh-prt'],[class^='jh-pse']").each(function(index, el) {
+                $(this).removeClass('cb0');
+            });
+        }
     }
 
     function genColorSettings(object) {
@@ -141,8 +148,8 @@ $(document).ready(function() {
             $.each(colors, function(index, val) {
                 a.append(val);
             });
-            if (SETTINGS['Blind'])
-                applyColorBlindness();
+
+            applyColorBlindness(SETTINGS['Blind']);
         });
     }
 
@@ -197,39 +204,42 @@ $(document).ready(function() {
 
             });
         })
-        if (SETTINGS['Blind']){
-            applyColorBlindness();
-        } else {
-            // TODO: Remove Color Blindness
-        }
+
+        applyColorBlindness(SETTINGS['Blind']);
     }
 
     function init(argument) {
-        if ($('.jh_settings_button').length < 1){
-                $('.topNavTab').append($('<a></a>')
-                    .css('color', 'black')
-                    .append($('<img src="/img/icon/custom51_100/gears16.png"></img>').addClass('jh_settings_button')
-                        .click(function(event) {
-                            if ($('.jh_settings').length <= 0) {
-                                $('.jh_settings_button').after($('<div></div>').addClass('jh_settings')
-                                    .css({
-                                        'z-index': '10',
-                                        'position': 'absolute',
-                                        'background': 'white',
-                                        'width': '210px',
-                                        'border': '2px solid #EAEAEA'
-                                    }));
-                                genSettings($('.jh_settings'));
-                            } else {
-                                if ($('.jh_settings').is(':visible')) {
-                                    $('.jh_settings').hide();
-                                } else {
-        
-                                    $('.jh_settings').show();
-                                }
-                            }
-                        })));
+        $('.topNavTab').append($('<a></a>')
+            .css('color', 'black')
+            .append($('<img src="/img/icon/custom51_100/gears16.png"></img>').addClass('jh_settings_button')
+                .click(function(event) {
+                    if ($('.jh_settings').length <= 0) {
+                        $('.jh_settings_button').after($('<div></div>').addClass('jh_settings')
+                            .css({
+                                'z-index': '10',
+                                'position': 'absolute',
+                                'background': 'white',
+                                'width': '210px',
+                                'border': '2px solid #EAEAEA',
+                                'box-shadow': '-2px 7px 15px grey'
+                            }));
+                        genSettings($('.jh_settings'));
+                    } else {
+                        if ($('.jh_settings').is(':visible')) {
+                            $('.jh_settings').hide();
+                        } else {
+
+                            $('.jh_settings').show();
+                        }
+                    }
+                })));
+        $(document).mouseup(function(event) {
+            var c = $('.jh_settings');
+            if(!c.is(event.target) && c.has(event.target).length === 0){
+                if (c.is(':visible'))
+                    c.fadeOut('slow');
             }
+        });
     }
 
 
@@ -486,8 +496,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
-                if (SETTINGS['Blind'])
-                    applyColorBlindness();
+
+                applyColorBlindness(SETTINGS['Blind']);
 
                 makeSortable();
             }
@@ -509,8 +519,8 @@ $(document).ready(function() {
                         checkPRT();
                     if (SETTINGS['Customer'])
                         colorWaiting();
-                    if (SETTINGS['Blind'])
-                        applyColorBlindness();
+
+                    applyColorBlindness(SETTINGS['Blind']);
                     makeSortable();
                 }
             } else {
@@ -552,8 +562,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
-                if (SETTINGS['Blind'])
-                    applyColorBlindness();
+
+                applyColorBlindness(SETTINGS['Blind']);
                 getCases();
                 makeSortable();
             }, 500);
@@ -589,8 +599,8 @@ $(document).ready(function() {
                     checkPRT();
                 if (SETTINGS['Customer'])
                     colorWaiting();
-                if (SETTINGS['Blind'])
-                    applyColorBlindness();
+
+                applyColorBlindness(SETTINGS['Blind']);
                 getCases();
                 makeSortable();
             }, 500);
