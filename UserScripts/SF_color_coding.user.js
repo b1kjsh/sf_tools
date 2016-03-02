@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    1.85
+// @version    2.0
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_setValue
@@ -33,7 +33,7 @@ $(document).ready(function() {
     var mArray = [];
     var jh_CSS = GM_getResourceText("jh_CSS");
     var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
-    GM_addStyle(jh_CSS);
+    GM_addStyle(".jh-border{border-color:#555559;background-color:#555559;background-image:null}.jh-hover{background-color:#c6ecff!important}.jh-pse-escalated.cb0{background-color:#543005!important;color:#fff}.jh-pse-escalated{background-color:#d7ccc8;border-color:#d7ccc8}.jh-pse-waiting.cb0{background-color:#8c510a!important;color:#fff}.jh-pse-waiting{background-color:#e2e6e7;border-color:#e2e6e7}.jh-pse-esc-eng.cb0{background-color:#bf812d!important;border-color:#fff}.jh-pse-esc-eng{background-color:#f1ff9b;border-color:#f1ff9b}.jh-tse-nr.cb0{background-color:#56b4ff!important}.jh-tse-nr{background-color:#d7ccc8;border-color:#d7ccc8}.jh-tse-ur.cb0{background-color:#009e73!important}.jh-tse-ur{background-color:#9beeff;border-color:#9beeff}.jh-tse-esc-pse.cb0{background-color:#0072b2!important}.jh-tse-esc-pse{background-color:#f1ff9b;border-color:#f1ff9b}.jh-tse-esc-eng.cb0{background-color:#0072b2!important}.jh-tse-esc-eng{background-color:#f1ff9b;border-color:#f1ff9b}.jh-tse-waiting-cust.cb0{background-color:#f0e442!important}.jh-tse-waiting-cust{background-color:#e2e6e7;border-color:#e2e6e7}.jh-prt-high.cb0 a,.jh-prt-high.cb0 div,.jh-prt-high.cb0 span,.jh-tse-patch-delivered.cb0{background-color:#e69f00!important;color:#fff}.jh-tse-patch-delivered{background-color:#C60;border-color:#C60}.jh-prt-low.cb0{background-color:#f0e442!important}.jh-prt-low{background-color:#EBC299;border-color:#EBC299}.jh-prt-med.cb0{background-color:#e69f00!important}.jh-prt-med{background-color:#FC6;border-color:#FC6;font:'italic 12px/18px Arial, Helvetica, sans-serif'}.jh-prt-high.cb0,.jh-prt-high.cb0 a,.jh-prt-high.cb0 div,.jh-prt-high.cb0 span{background-color:#cc79a7!important;color:#fff;font-weight:600}.jh-prt-high{background-color:#F93;border-color:#F93;font:'bold 12px/18px Arial, Helvetica, sans-serif'}.jh-prt-urgent.cb0,.jh-prt-urgent.cb0 a,.jh-prt-urgent.cb0 div,.jh-prt-urgent.cb0 span{background-color:#d55e00!important;font:'italic bold 12px/18px Arial, Helvetica, sans-serif';color:#000;font-weight:700;font-style:italic}.jh-prt-urgent,.jh-prt-urgent a,.jh-prt-urgent div,.jh-prt-urgent span{background-color:red;border-color:red;font:'italic bold 12px/18px Arial, Helvetica, sans-serif';color:#fff;font-weight:700;font-style:italic}.jh-hidden{display:none}");
     // GM_addStyle (jh_CSS_layout); 
 
     function initSettings() {
@@ -204,30 +204,31 @@ $(document).ready(function() {
     }
 
     function init(argument) {
-
-        $('.topNavTab').append($('<a></a>')
-            .css('color', 'black')
-            .append($('<img src="/img/icon/custom51_100/gears16.png"></img>').addClass('jh_settings_button')
-                .click(function(event) {
-                    if ($('.jh_settings').length <= 0) {
-                        $('.jh_settings_button').after($('<div></div>').addClass('jh_settings')
-                            .css({
-                                'z-index': '10',
-                                'position': 'absolute',
-                                'background': 'white',
-                                'width': '210px',
-                                'border': '2px solid #EAEAEA'
-                            }));
-                        genSettings($('.jh_settings'));
-                    } else {
-                        if ($('.jh_settings').is(':visible')) {
-                            $('.jh_settings').hide();
-                        } else {
-
-                            $('.jh_settings').show();
-                        }
-                    }
-                })));
+        if ($('.jh_settings_button').length < 1){
+                $('.topNavTab').append($('<a></a>')
+                    .css('color', 'black')
+                    .append($('<img src="/img/icon/custom51_100/gears16.png"></img>').addClass('jh_settings_button')
+                        .click(function(event) {
+                            if ($('.jh_settings').length <= 0) {
+                                $('.jh_settings_button').after($('<div></div>').addClass('jh_settings')
+                                    .css({
+                                        'z-index': '10',
+                                        'position': 'absolute',
+                                        'background': 'white',
+                                        'width': '210px',
+                                        'border': '2px solid #EAEAEA'
+                                    }));
+                                genSettings($('.jh_settings'));
+                            } else {
+                                if ($('.jh_settings').is(':visible')) {
+                                    $('.jh_settings').hide();
+                                } else {
+        
+                                    $('.jh_settings').show();
+                                }
+                            }
+                        })));
+            }
     }
 
 
