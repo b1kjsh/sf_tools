@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.15
+// @version    0.16
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -21,7 +21,7 @@
 // ==/UserScript==
 
 $(document).ready(function() {
-
+	var signature = "\n\n---\nJosh Howard\nLANDESK\nProduct Support Engineer";
     var case_status = [
         ["Waiting on Case Owner", "Set Case to 'Waiting on Case Owner'", ""],
         ["Escalated to Engineering", "Set Case to 'Escalated to Engineering'", ""]
