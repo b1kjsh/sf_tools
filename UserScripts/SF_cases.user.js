@@ -58,8 +58,6 @@ $(document).ready(function() {
             getEditPage($(this).text(), "PSEstatus");
         });
 
-
-
         // $("a.jh-case_updates-args").click(function(){
         // 	getEditPage($('#jh-unibar').val());
         // });
@@ -264,7 +262,7 @@ or call 1.800.581.4553.\n\nHave a great day!\n\n";
                 console.log(jh_text);
                 $('#myEditBox').load(url, function() {
                     console.log('getting case comment edit page');
-                    $('#CommentBody').val(jh_text);
+                    $('#CommentBody').val(jh_text + signature);
                     if (string.length < 1) {
                         $('#IsPublished').prop('checked', 'true');
                     }
