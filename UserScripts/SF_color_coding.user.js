@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_color_coding
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    2.1
+// @version    2.2
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_setValue
@@ -22,9 +22,6 @@ var debug = false;
 console.log("---" + GM_info.script.name + " loaded in window version " + GM_info.script.version + "---");
 
 // TODO: add logo somewhere https://c.na19.content.force.com/servlet/servlet.FileDownload?file=01513000002lPva
-
-// TODO: move the search bar
-// Done!
 
 $(document).ready(function() {
     // $('.x-grid3-col-ACTION_COLUMN').
@@ -47,13 +44,28 @@ $(document).ready(function() {
             if (settingsValues[val] === undefined) {
                 GM_setValue(val, true);
             }
-            if (settingsValues[val] === undefined && val == 'Blind')
+            if (settingsValues[val] === undefined && val == 'Blind'){
                 GM_setValue(val, false);
+            }
         });
 
         console.log(SETTINGS);
 
 
+    }
+
+    function tfslinks(argument) {
+        console.log('init tfslinks');
+        $('.x-grid3-col-00N30000004r0fX').each(function() {
+            if ($(this).html() != '&nbsp;') {
+                $(this).html(wraptfslink($(this).html()));
+                console.log('tfslinks: [' + $(this).html() + ']');
+            }
+        });
+    }
+
+    function wraptfslink(argument) {
+        return '<a href="http://tfs.landesk.com:8080/tfs/LDEngineering/Master/_workitems#_a=edit&id=' + argument + '">' + argument + '</a>';
     }
 
     function applyColorBlindness(isBlind) {
@@ -235,7 +247,7 @@ $(document).ready(function() {
                 })));
         $(document).mouseup(function(event) {
             var c = $('.jh_settings');
-            if(!c.is(event.target) && c.has(event.target).length === 0){
+            if (!c.is(event.target) && c.has(event.target).length === 0) {
                 if (c.is(':visible'))
                     c.fadeOut('slow');
             }
@@ -261,7 +273,7 @@ $(document).ready(function() {
 
     function colorAged() {
         console.info('colorAged()', '---Checking Case Age---');
-        if (/Open Cases/.test($('select.title option:selected').html())) {
+        if (/Open\ Cases/.test($('select.title option:selected').html())) {
             if ($('.x-grid3-col-00N30000004r0gj').length) {
                 // console.log('x-grid3-col-00N30000004r0gj', $('.x-grid3-col-00N30000004r0gj').length);
                 var ages = new Array();
@@ -326,7 +338,7 @@ $(document).ready(function() {
         }
 
         console.log(base, low, med, high, urgent);
-        if (/Open Cases/.test($('select.title option:selected').html())) {
+        if (/Open\ Cases/.test($('select.title option:selected').html())) {
             if ($('.x-grid3-col-00N30000004r0gN').length) {
                 $('.x-grid3-col-00N30000004r0gN').each(function() {
 
@@ -458,7 +470,7 @@ $(document).ready(function() {
         console.info('color()', '---Checking Case Status---');
         var replace_pipe = $('.x-grid3-col-ACTION_COLUMN').html().replace(/\|/, '');
         $('.x-grid3-col-ACTION_COLUMN').html(replace_pipe);
-        if (/Open Cases/.test($('select.title option:selected').html())) {
+        if (/Open\ Cases/.test($('select.title option:selected').html())) {
             $(".x-grid3-row-table").find(("div:contains('Open: Not Reviewed')")).parent("td").parent("tr").parent("tbody").addClass('jh-tse-nr');
             $(".x-grid3-row-table").find(("div:contains('Open: Under Review')")).parent("td").parent("tr").parent("tbody").addClass('jh-tse-ur');
             $(".x-grid3-row-table").find(("div:contains('Open: Escalated to PSE')")).parent("td").parent("tr").parent("tbody").addClass('jh-tse-esc-pse');
@@ -498,7 +510,7 @@ $(document).ready(function() {
                     colorWaiting();
 
                 applyColorBlindness(SETTINGS['Blind']);
-
+                tfslinks();
                 makeSortable();
             }
         } else {
@@ -521,6 +533,7 @@ $(document).ready(function() {
                         colorWaiting();
 
                     applyColorBlindness(SETTINGS['Blind']);
+                    tfslinks();
                     makeSortable();
                 }
             } else {
