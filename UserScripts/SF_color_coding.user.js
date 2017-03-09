@@ -65,7 +65,7 @@ $(document).ready(function() {
     }
 
     function wraptfslink(argument) {
-        return '<a href="http://tfs.landesk.com:8080/tfs/LDEngineering/Master/_workitems#_a=edit&id=' + argument + '">' + argument + '</a>';
+        return '<a href="https://landesk.visualstudio.com/Master/_workitems#_a=edit&id=' + argument + '">' + argument + '</a>';
     }
 
     function applyColorBlindness(isBlind) {
