@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.16
+// @version    0.17
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -21,7 +21,7 @@
 // ==/UserScript==
 
 $(document).ready(function() {
-	var signature = "\n\n---\nJosh Howard\nLANDESK\nProduct Support Engineer";
+    var signature = "\n\n---\nJosh Howard\nLANDESK\nProduct Support Engineer";
     var case_status = [
         ["Waiting on Case Owner", "Set Case to 'Waiting on Case Owner'", ""],
         ["Escalated to Engineering", "Set Case to 'Escalated to Engineering'", ""]
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     var tfs = $("#00N30000004r0fX_ileinner").text();
     if (tfs.match(/[0-9]{6}/))
-        $("#00N30000004r0fX_ileinner").wrapInner('<a href="http://tfs.landesk.com:8080/tfs/LDEngineering/Master/_workitems#_a=edit&id=' + tfs + '"></a>');
+        $("#00N30000004r0fX_ileinner").wrapInner('<a href="https://landesk.visualstudio.com/Master/_workitems#_a=edit&id=' + tfs + '"></a>');
 
     function init() {
         $('body').append('<div id="myEditBox" />');
@@ -59,7 +59,7 @@ $(document).ready(function() {
         });
 
         // $("a.jh-case_updates-args").click(function(){
-        // 	getEditPage($('#jh-unibar').val());
+        //  getEditPage($('#jh-unibar').val());
         // });
 
         $('.jh-unilinkw').parent('li').keypress(function(e) {
@@ -93,10 +93,10 @@ $(document).ready(function() {
 
         $('#jh-unibar').on('keydown', function(e) {
             console.log(e.keyCode.toString() + " " + e.which.toString());
-            //	$('.jh-unilinkw').first().addClass('jh-hover');			    
+            //  $('.jh-unilinkw').first().addClass('jh-hover');             
             //    $('.list').find('li').each(function(index, el) {
-            //    	if (index > 0)
-            //    		$(this).removeClass('jh-hover');
+            //      if (index > 0)
+            //          $(this).removeClass('jh-hover');
             //    });
             if ((e.keyCode || e.which) == 9) {
                 $('.jh-unilinkw').parent('li').first().focus();
@@ -188,10 +188,10 @@ $(document).ready(function() {
                 $('#cas7').val(value);
             }
             // $("#editPage").submit(function(event) {
-            // 	$('#myEditBox2').load(action,function() {
-            // 		/* Act on the event */
-            // 	});
-            // 	return false;
+            //  $('#myEditBox2').load(action,function() {
+            //      /* Act on the event */
+            //  });
+            //  return false;
             // });
             $(this).find("form").find(".btn[name='save']").click();
         });
@@ -201,11 +201,16 @@ $(document).ready(function() {
     function getCaseCommentPage(value) {
         var geturl = $('input[name="newComment"]').attr('onclick');
         var url = geturl.toString().replace(/(^navigateToUrl\(')([0-9a-zA-Z\/]{2,}\?parent_id=[0-9a-zA-Z]{2,}&retURL=%[a-zA-Z0-9]{2,})',null,'[a-zA-Z]{2,}'\);$/, "$2");
+        if (value == 'pse') {
+            geturl = $('input[name="pse_comment"]').attr('onclick');
+            url = geturl.toString().replace(/(^navigateToUrl\(')https:\/\/c\.na19\.visual\.force\.com([0-9a-zA-Z\/=\&\?\.\:]{2,})','[a-zA-Z]{2,}'\);$/, "$2");
+        }
         console.log(url);
 
         // <textarea cols="80" id="CommentBody" maxlength="4000" name="CommentBody" onchange="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onclick="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeydown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeyup="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onmousedown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" rows="8" tabindex="2" type="text" wrap="soft" style="background-image: none; background-position: 0% 0%; background-repeat: repeat;"></textarea>
-        if ($('#jh-unitextw').length)
+        if ($('#jh-unitextw').length) {
             $('#jh-unitextw').remove();
+        }
 
         $('#jh-uniwrapper').append('<div id="jh-unitextw"><textarea class="jh-textarea" maxlength="4000" /></div>');
         var options = { maxHeight: 600 };
@@ -239,13 +244,13 @@ $(document).ready(function() {
                 string = "Is there any news regarding this case? \
 I would like to know how you would like to proceed with this case. Would you prefer I keep checking in, just wait to hear back from you, or close this case out and we can open it again if there are problems. \
 I want to make sure you are supported, but don't want to continually bother you either.\n\nLet me know how to proceed.\n\n";
-				break;
-			case "a2":
-				string = "As I have not heard anything back regarding my previous emails, and I can't keep cases open indefinitely, I will go ahead and archive this case. \
+                break;
+            case "a2":
+                string = "As I have not heard anything back regarding my previous emails, and I can't keep cases open indefinitely, I will go ahead and archive this case. \
 This case can be reopened at your convenience. \
 If you have new information regarding this case or have any questions, please reference this case number and do one of the following to reopen this case: Reply to this email, open a new ticket at support.landesk.com, \
 or call 1.800.581.4553.\n\nHave a great day!\n\n";
-				 break;
+                break;
             default:
                 string = '';
                 break;
@@ -262,11 +267,14 @@ or call 1.800.581.4553.\n\nHave a great day!\n\n";
                 console.log(jh_text);
                 $('#myEditBox').load(url, function() {
                     console.log('getting case comment edit page');
-                    $('#CommentBody').val(jh_text + signature);
+                    if (value == 'pse') {
+                        $('textarea').val(jh_text + signature);
+                    } else {
+                        $('#CommentBody').val(jh_text + signature);
+                    }
                     if (string.length < 1) {
                         $('#IsPublished').prop('checked', 'true');
                     }
-
                     $(this).find("form").find(".btn[name='save']").click();
                 });
             }
