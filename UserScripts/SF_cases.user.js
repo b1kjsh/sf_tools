@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.80
+// @version    0.85
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_openInTab
@@ -138,7 +138,6 @@ $(document).ready(function() {
                 }
             },
             setup_editor: function() {
-                // <textarea cols="80" id="CommentBody" maxlength="4000" name="CommentBody" onchange="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onclick="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeydown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onkeyup="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" onmousedown="handleTextAreaElementChangeWithByteCheck('CommentBody', 4000, 4000, 'remaining', 'over limit');" rows="8" tabindex="2" type="text" wrap="soft" style="background-image: none; background-position: 0% 0%; background-repeat: repeat;"></textarea>
                 if ($('#jh-unitextw').length) {
                     $('#jh-unitextw').remove();
                 }
@@ -235,30 +234,6 @@ $(document).ready(function() {
             comment_page: function() {
                 GM_setValue("comment",{text: settings.uni_text, type: settings.uni_cli[1]});
                 window.location.href = settings.comment_url();
-                // GM_xmlhttpRequest({
-                //     method: "GET",
-                //     url: settings.comment_url(),
-                //     headers: {
-                //         "User-Agent": "Mozilla/5.0"
-                //     },
-                //     onreadystatechange: function(reponse) {
-                //         if ((reponse.readyState == 4) && (reponse.status == 200)) {
-                //             // reponse.responseText object contains the response.
-                //             document.getElementById("myEditBox").innerHTML = reponse.responseText;
-                //         }
-                //     },
-                //     onload: function(response) {
-                //         console.log([
-                //             response.status,
-                //             response.statusText,
-                //             response.readyState,
-                //             response.responseHeaders,
-                //             response.responseText,
-                //             response.finalUrl
-                //         ].join("\n"));
-                //         settings.submit_comment();
-                //     }
-                // });
             },
             comment_url: function() {
                 var geturl = $('input[name="edit"]').attr('onclick'),
@@ -311,38 +286,5 @@ $(document).ready(function() {
     };
 
     $('body').cases();
-
-
-
-
-    //     function submitdata() {
-    //         console.debug('entered submitdata()');
-    //         // TODO: Add REST API Support to add comments
-    //         // http://stackoverflow.com/questions/20155531/converting-curl-cmd-to-jquery-ajax
-    //         // http://www.salesforce.com/us/developer/docs/api_rest/api_rest.pdf
-    //         $.ajax({
-    //             url: "http://www.example.com/api",
-    //             beforeSend: function(xhr) {
-    //                 xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password"));
-    //             },
-    //             type: 'POST',
-    //             dataType: 'json',
-    //             contentType: 'application/json',
-    //             processData: false,
-    //             data: '{"foo":"bar"}',
-    //             success: function(data) {
-    //                 alert(JSON.stringify(data));
-    //             },
-    //             error: function() {
-    //                 console.error("submitdata()", "Cannot get data");
-    //             }
-    //         });
-    //     }
-
-
-
-
-
-
 
 });
