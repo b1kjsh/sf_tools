@@ -234,8 +234,7 @@ $(document).ready(function() {
             signature: "\n\n---\nJosh Howard\nLANDESK\nProduct Support Engineer",
             comment_page: function() {
                 GM_setValue("comment",{text: settings.uni_text, type: settings.uni_cli[1]});
-                GM_openInTab(settings.comment_url(),true);
-                window.top.close();
+                window.location.href = settings.comment_url();
                 // GM_xmlhttpRequest({
                 //     method: "GET",
                 //     url: settings.comment_url(),
