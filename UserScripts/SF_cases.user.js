@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.17
+// @version    0.20
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -38,6 +38,17 @@ $(document).ready(function() {
     var tfs = $("#00N30000004r0fX_ileinner").text();
     if (tfs.match(/[0-9]{6}/))
         $("#00N30000004r0fX_ileinner").wrapInner('<a href="https://landesk.visualstudio.com/Master/_workitems#_a=edit&id=' + tfs + '"></a>');
+    if ($('#cas2_ileinner') !== undefined){
+        $('#cas2_ileinner').append(function() {
+            var ref = "[ ref:_00D30mplz._50013z" + window.location.href.replace("https://na19.salesforce.com/","").substring(11,15)  + " ]",
+                email = $.trim($('#cas10_ileinner').find('a').text()),
+                case_number = $.trim($('#cas2_ileinner').text().replace('[View Hierarchy]','')),
+                case_subject = $.trim($('#cas14_ileinner').text()),
+                subject = 'Case: ' + case_number + ' - ' + case_subject + ' ' + ref;
+            $(this).append('<br />');
+            return $('<a></a>').attr('href','mailto:'+email+'?subject='+subject).text('[Send Email with Email Client]');
+        });
+    }
 
     function init() {
         $('body').append('<div id="myEditBox" />');
@@ -45,12 +56,12 @@ $(document).ready(function() {
         $('#sidebarCell').prepend('<div id="jh-uniwrapper"><input type="text" class="jh-unibar" id="jh-unibar"></input><ul class="list jh-unilist"></ul></div>');
         $('#jh-uniwrapper').draggable();
         $.each(case_status, function(i, item) {
-            var t = i + 1
+            var t = i + 1;
             $('#jh-uniwrapper').find('.list').append('<li tabindex="' + t + '"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_status" name="' + item[0].valueOf().replace(/\s/g, '_').toLowerCase() + '">' + item[0].valueOf() + '</a><div><p class="jh-pdesc">' + item[1].valueOf() + '</p></div></div></li>');
         });
 
         $.each(case_updates, function(i, item) {
-            var t = i + 2
+            var t = i + 2;
             $('#jh-uniwrapper').find('.list').append('<li tabindex="' + t + '"><div class="jh-unilinkw"><a class="name jh-unilink jh-case_updates-args" name="' + item[0].valueOf().replace(/\s/g, '_').toLowerCase() + '">' + item[0].valueOf() + '</a><div><p class="jh-pdesc L">' + item[1].valueOf() + '</p><p class="jh-pdesc R">' + item[2].valueOf() + '</p></div></div></li>');
         });
 
