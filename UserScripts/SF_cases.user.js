@@ -46,7 +46,7 @@ $(document).ready(function() {
                 case_subject = $.trim($('#cas14_ileinner').text()),
                 subject = 'Case: ' + case_number + ' - ' + case_subject + ' ' + ref;
             $(this).append('<br />');
-            return $('<a></a>').attr('href','mailto:'+email+'?subject='+subject).text('[Send Email with Email Client]');
+            return $('<a></a>').attr('href','mailto:'+email+'?subject='+subject).text('[Send Email]');
         });
     }
 
