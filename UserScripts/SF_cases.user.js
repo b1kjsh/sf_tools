@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.65
+// @version    0.70
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_xmlhttpRequest
@@ -207,7 +207,7 @@ $(document).ready(function() {
                 if (string.length < 1 && settings.uni_cli[1] === 'tse') {
                     $('#IsPublished').prop('checked', 'true');
                 }
-                $(this).find("form").find(".btn[name='save']").click();
+                $(this).find("form").find(".btn[value='Save']").click();
             },
             case_status: [
                 ["Waiting on Case Owner", "Set Case to 'Waiting on Case Owner'", ""],
