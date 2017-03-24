@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.30
+// @version    0.50
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_xmlhttpRequest
