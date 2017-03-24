@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.25
+// @version    0.30
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @description  Days Since Updated and the Case Status column is required for this script.
@@ -39,14 +39,13 @@ $(document).ready(function() {
     if (tfs.match(/[0-9]{6}/))
         $("#00N30000004r0fX_ileinner").wrapInner('<a href="https://landesk.visualstudio.com/Master/_workitems#_a=edit&id=' + tfs + '"></a>');
     if ($('#cas2_ileinner') !== undefined){
-        $('#cas2_ileinner').append(function() {
+        $('[id$="ButtonRow"]').append(function() {
             var ref = "[ ref:_00D30mplz._50013z" + window.location.href.replace("https://na19.salesforce.com/","").substring(11,15)  + " ]",
                 email = $.trim($('#cas10_ileinner').find('a').text()),
                 case_number = $.trim($('#cas2_ileinner').text().replace('[View Hierarchy]','')),
                 case_subject = $.trim($('#cas14_ileinner').text()),
                 subject = 'Case: ' + case_number + ' - ' + case_subject + ' ' + ref;
-            $(this).append('<br />');
-            return $('<a></a>').attr('href','mailto:'+email+'?subject='+subject).text('[Send Email]');
+            return $('<input></input>').addClass('btn').css('margin-left', '4px').attr({'name':"send_email", 'type': 'button', 'value':'Send Email'}).attr('title','Send Email').attr('onclick',"window.location='mailto:"+email+"?subject="+subject+"'");
         });
     }
 
