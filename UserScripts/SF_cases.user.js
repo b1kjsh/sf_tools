@@ -1,12 +1,16 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.70
+// @version    0.80
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
-// @grant       GM_xmlhttpRequest
+// @grant       GM_openInTab
+// @grant       GM_setValue
+// @grant       GM_getValue
+// @grant       GM_deleteValue
 // @description  Days Since Updated and the Case Status column is required for this script.
 // @include     https://na19.salesforce.com/500*
+// @include     https://c.na19.visual.force.com/apex/PSECaseComment*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
 // @require     https://raw.githubusercontent.com/b1kjsh/sf_tools/master/UserScripts/Resources/hotkeys/jquery.hotkeys.js
 // @require     https://github.com/b1kjsh/sf_tools/raw/master/UserScripts/SF_hotkeys.user.js
@@ -25,15 +29,24 @@ $(document).ready(function() {
     $.fn.cases = function() {
         var settings = $.extend({
             init: function() {
-                console.log('cases.init');
+                console.log('cases.init', window.location.pathname);
                 var jh_CSS = GM_getResourceText("jh_CSS");
                 var jh_CSS_layout = GM_getResourceText("jh_CSS_layout");
                 GM_addStyle(jh_CSS);
                 GM_addStyle(jh_CSS_layout);
-                settings.sf_email_url();
-                settings.tfs_link();
-                settings.setup_load_window();
-                settings.setup_listeners();
+                if (window.location.pathname == '/apex/PSECaseComment'){
+                    settings.uni_text = GM_getValue("comment","").text;
+                    if (settings.uni_text.length > 0){
+                        settings.submit_comment();
+                        GM_deleteValue("comment");
+                    }
+                } else {
+                    settings.sf_email_url();
+                    settings.tfs_link();
+                    settings.setup_load_window();
+                    settings.setup_listeners();
+                }
+
             },
             setup_listeners: function() {
                 console.log('cases.setup_listeners');
@@ -198,16 +211,17 @@ $(document).ready(function() {
             },
             submit_comment: function() {
                 console.log('getting case comment edit page');
-                if (settings.uni_cli[1] == 'pse') {
+                var comment = GM_getValue("comment","");
+                if (comment.type == 'pse') {
                     $('select').val("Waiting on Case Owner");
                     $('textarea').val(settings.uni_text);
                 } else {
                     $('#CommentBody').val(settings.uni_text);
                 }
-                if (string.length < 1 && settings.uni_cli[1] === 'tse') {
+                if (settings.uni_text.length < 1 && comment.type === 'tse') {
                     $('#IsPublished').prop('checked', 'true');
                 }
-                $(this).find("form").find(".btn[value='Save']").click();
+                $(".btn[value='Save']").click();
             },
             case_status: [
                 ["Waiting on Case Owner", "Set Case to 'Waiting on Case Owner'", ""],
@@ -219,30 +233,33 @@ $(document).ready(function() {
             ],
             signature: "\n\n---\nJosh Howard\nLANDESK\nProduct Support Engineer",
             comment_page: function() {
-                GM_xmlhttpRequest({
-                    method: "GET",
-                    url: settings.comment_url(),
-                    headers: {
-                        "User-Agent": "Mozilla/5.0"
-                    },
-                    onreadystatechange: function(reponse) {
-                        if ((reponse.readyState == 4) && (reponse.status == 200)) {
-                            // reponse.responseText object contains the response.
-                            document.getElementById("myEditBox").innerHTML = reponse.responseText;
-                        }
-                    },
-                    onload: function(response) {
-                        console.log([
-                            response.status,
-                            response.statusText,
-                            response.readyState,
-                            response.responseHeaders,
-                            response.responseText,
-                            response.finalUrl
-                        ].join("\n"));
-                        settings.submit_comment();
-                    }
-                });
+                GM_setValue("comment",{text: settings.uni_text, type: settings.uni_cli[1]});
+                GM_openInTab(settings.comment_url(),true);
+                window.top.close();
+                // GM_xmlhttpRequest({
+                //     method: "GET",
+                //     url: settings.comment_url(),
+                //     headers: {
+                //         "User-Agent": "Mozilla/5.0"
+                //     },
+                //     onreadystatechange: function(reponse) {
+                //         if ((reponse.readyState == 4) && (reponse.status == 200)) {
+                //             // reponse.responseText object contains the response.
+                //             document.getElementById("myEditBox").innerHTML = reponse.responseText;
+                //         }
+                //     },
+                //     onload: function(response) {
+                //         console.log([
+                //             response.status,
+                //             response.statusText,
+                //             response.readyState,
+                //             response.responseHeaders,
+                //             response.responseText,
+                //             response.finalUrl
+                //         ].join("\n"));
+                //         settings.submit_comment();
+                //     }
+                // });
             },
             comment_url: function() {
                 var geturl = $('input[name="edit"]').attr('onclick'),
