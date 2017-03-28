@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.87
+// @version    0.88
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_openInTab
 // @grant       GM_setValue
 // @grant       GM_getValue
 // @grant       GM_deleteValue
+// @run-at document-start
 // @description  Days Since Updated and the Case Status column is required for this script.
 // @include     https://na19.salesforce.com/500*
 // @include     https://c.na19.visual.force.com/apex/PSECaseComment*
