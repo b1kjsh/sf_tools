@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.86
+// @version    0.87
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_openInTab
@@ -256,7 +256,7 @@ $(document).ready(function() {
                 console.log('cases.sf_email_url');
                 if ($('#cas2_ileinner') !== undefined) {
                     $('[id$="ButtonRow"]').append(function() {
-                        var ref = "[ ref:_00D30mplz._50013z" + window.location.href.replace("https://na19.salesforce.com/", "").substring(11, 15) + " ]",
+                        var ref = "[ ref:_00D30mplz._50013z" + window.location.href.replace("https://na19.salesforce.com/", "").substring(11, 15) + ":ref ]",
                             email = $.trim($('#cas10_ileinner').find('a').text()),
                             case_number = $.trim($('#cas2_ileinner').text().replace('[View Hierarchy]', '')),
                             case_subject = $.trim($('#cas14_ileinner').text()),
