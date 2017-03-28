@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       SF_cases
 // @namespace  https://github.com/b1kjsh/sf_tools
-// @version    0.85
+// @version    0.86
 // @grant       GM_getResourceText
 // @grant       GM_addStyle
 // @grant       GM_openInTab
@@ -267,7 +267,7 @@ $(document).ready(function() {
                                 'name': "send_email",
                                 'type': 'button',
                                 'value': 'Send Email',
-                                'onclick': "window.location='mailto:" + email + "?subject=" + subject + "'&cc=landesk.support@landesk.com"
+                                'onclick': "window.location='mailto:" + email + "?subject=" + subject + "&cc=landesk.support@landesk.com'"
                             });
                     });
                 }
