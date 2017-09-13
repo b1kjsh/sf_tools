@@ -13,3 +13,5 @@ To install, open the raw master.user.js (https://github.com/b1kjsh/sf_tools/raw/
 
 Built into each script is a @downloadURL which will allow your user script engine to check for updates and obtain them from github. So as new stuff is put up you can just click a button in your userscript engine of choice and get the updated version.
 
+### Setup Instructions for SF_color_coding.user.js
+https://utcommunity.ivanti.com/docs/DOC-40272
